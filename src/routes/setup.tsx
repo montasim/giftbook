@@ -12,12 +12,13 @@ import { EmptyState } from "@/components/common/empty-state"
 import { Field } from "@/components/common/field"
 import { StatusBadge } from "@/components/common/status-badge"
 import { t } from "@/lib/i18n/bn"
-import { drive, type LedgerFile } from "@/features/google"
+import { auth, drive, isMock, picker, type LedgerFile } from "@/features/google"
+import { MockPickerDialog } from "@/features/google/mock/ui"
 import { getSession, logout, setRedirect, useSession } from "@/features/auth/session"
 import { activateLedger } from "@/features/auth/activate"
 
 export const Route = createFileRoute("/setup")({
-  validateSearch: z.object({ pick: z.string().optional() }),
+  validateSearch: z.object({ pick: z.union([z.string(), z.number()]).transform(String).optional() }), // ?pick=1 রিলোডে number হয়ে আসে
   beforeLoad: ({ location }) => {
     if (!getSession().user) {
       setRedirect(location.href)
@@ -51,6 +52,18 @@ function SetupPage() {
     }
   }, [user?.email, pick])
   if (!user) return null
+  // drive.file: শেয়ার-পাওয়া খাতা Google নিজে দেখায় না — একবার Picker-এ বাছলে অ্যাপ অনুমতি পায়, পরের বার তালিকায় আসে
+  const openShared = async () => {
+    const token = auth.currentToken() ?? (await auth.requestToken(user.email))
+    const id = await picker.pickSharedFile(null, token, user.email)
+    if (!id) return
+    try {
+      await drive.getFile(id, user.email)
+      activate(id)
+    } catch {
+      toast.error(t.setup.openSharedFail)
+    }
+  }
   const create = async () => {
     const n = name.trim()
     if (!n) return setErr(t.common.required)
@@ -95,6 +108,18 @@ function SetupPage() {
         )}
         <Card>
           <CardHeader>
+            <CardTitle>{t.setup.openShared}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-3">
+            <p className="text-sm text-stone-500">{t.setup.openSharedHint}</p>
+            <Button variant="outline" size="lg" onClick={() => void openShared()}>
+              <AppIcon name="search" />
+              {t.setup.openShared}
+            </Button>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
             <CardTitle>{t.setup.createTitle}</CardTitle>
           </CardHeader>
           <CardContent>
@@ -110,6 +135,7 @@ function SetupPage() {
           </CardContent>
         </Card>
       </div>
+      {isMock && <MockPickerDialog />}
     </BareLayout>
   )
 }

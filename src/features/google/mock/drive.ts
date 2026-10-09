@@ -63,6 +63,9 @@ export function grantPickerAccess(fileId: string, email: string) {
   writeFiles({ ...files, [fileId]: { ...f, members: { ...f.members, [email]: { ...m, pickerRequired: false } } } })
   return true
 }
+// Picker (fileId ছাড়া): যে ফাইলগুলোয় এই ইমেইল সদস্য (মালিক নয়)
+export const mockFilesSharedWith = (email: string): MockFile[] => Object.values(readFiles()).filter((f) => f.owner !== email && !!f.members[email])
+
 export const mockFileVisibleTo = (fileId: string, email: string): MockFile | null => {
   const f = readFiles()[fileId]
   return f && f.members[email] ? f : null

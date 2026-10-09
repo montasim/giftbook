@@ -64,7 +64,10 @@ export async function run() {
   } catch (e) {
     const status = (e as { status?: number }).status
     const msg = String((e as Error).message ?? "")
-    const error: SyncState["error"] = status === 403 || status === 404 ? "revoked" : msg.startsWith("sheet-tampered") ? "tampered" : "error"
+    // 404, বা 403 যেখানে কারণ permission (rate-limit/quota-র 403 নয়) → অনুমতি নেই; বাকি সব সাময়িক error, পরের চক্রে আবার চেষ্টা
+    const quota = /rateLimit|dailyLimit|quota|RESOURCE_EXHAUSTED/i.test(msg)
+    const revoked = status === 404 || (status === 403 && !quota)
+    const error: SyncState["error"] = revoked ? "revoked" : msg.startsWith("sheet-tampered") ? "tampered" : "error"
     if (status === 401) auth.clear()
     set({ error, running: false })
   }
@@ -80,10 +83,11 @@ export async function syncNow() {
       return set({})
     }
   }
-  if (state.error === "tampered" || state.error === "error") set({ error: null })
+  if (state.error) set({ error: null }) // revoked-ও: মালিক আবার যোগ করলে এক চাপে ফিরে আসে
   await run()
 }
 export const pause = () => set({ paused: true, error: null })
+export const resume = () => { set({ paused: false, error: null }); void run() }
 export const reset = () => set({ pending: 0, error: null, paused: false, lastSyncAt: null, last: null })
 export const setSimulate = (patch: Partial<Simulate>) => {
   set({ simulate: { ...state.simulate, ...patch }, error: patch.tampered === false ? null : state.error })

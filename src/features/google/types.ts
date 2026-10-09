@@ -29,6 +29,6 @@ export type SheetsApi = {
 }
 
 export type PickerApi = {
-  // শুধু ওই একটা ফাইল দেখায়; বাছলে id, বাতিল/খালি হলে null
-  pickSharedFile: (fileId: string, token: string, me: string) => Promise<string | null>
+  // fileId দিলে শুধু ওই ফাইল, null দিলে শেয়ার করা সব স্প্রেডশিট; বাছলে id, বাতিল/খালি হলে null
+  pickSharedFile: (fileId: string | null, token: string, me: string) => Promise<string | null>
 }

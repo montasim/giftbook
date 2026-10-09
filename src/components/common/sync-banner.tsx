@@ -3,7 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { AppIcon } from "./app-icon"
 import { t } from "@/lib/i18n/bn"
-import { pause, reset, statusOf, useSync } from "@/features/sync/sync-engine"
+import { pause, reset, resume, statusOf, syncNow, useSync } from "@/features/sync/sync-engine"
 import { deleteLedgerLocal } from "@/features/ledger/db"
 import { setActiveFile } from "@/features/auth/session"
 
@@ -22,8 +22,20 @@ export function SyncBanner({ fileId }: { fileId: string }) {
         <AlertTitle>{title}</AlertTitle>
         <AlertDescription>
           <p>{desc}</p>
+          {status === "paused" && (
+            <div className="mt-2">
+              <Button variant="outline" size="sm" onClick={resume}>
+                <AppIcon name="sync" size={16} />
+                {t.sync.resume}
+              </Button>
+            </div>
+          )}
           {status === "revoked" && (
             <div className="mt-2 flex flex-wrap gap-2">
+              <Button size="sm" onClick={() => void syncNow()}>
+                <AppIcon name="sync" size={16} />
+                {t.sync.retry}
+              </Button>
               <Button variant="outline" size="sm" onClick={pause}>
                 {t.sync.keepCopy}
               </Button>

@@ -109,6 +109,9 @@ function JoinPage() {
             </span>
             <p className="text-lg font-semibold">{t.join.notMemberTitle}</p>
             <p className="text-sm text-stone-600">{t.join.notMember(user.email)}</p>
+            <Button size="lg" className="w-full" onClick={() => { setPhase("card"); void openPicker() }}>
+              {t.join.retry}
+            </Button>
             <Button variant="outline" onClick={switchAccount}>
               {t.join.switchAccount}
             </Button>

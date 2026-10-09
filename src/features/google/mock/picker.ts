@@ -4,7 +4,7 @@ import type { PickerApi } from "../types"
 // UI (MockPickerDialog) এই প্রমিজ resolve করে
 let resolver: ((id: string | null) => void) | null = null
 const listeners = new Set<() => void>()
-let request: { fileId: string; me: string } | null = null
+let request: { fileId: string | null; me: string } | null = null
 const emit = () => listeners.forEach((l) => l())
 
 export const mockPicker: PickerApi = {

@@ -8,7 +8,8 @@ export const realPicker: PickerApi = {
   async pickSharedFile(fileId, token) {
     await loadPicker()
     return new Promise((resolve) => {
-      const view = new google.picker.DocsView(google.picker.ViewId.SPREADSHEETS).setFileIds(fileId)
+      const view = new google.picker.DocsView(google.picker.ViewId.SPREADSHEETS)
+      if (fileId) view.setFileIds(fileId)
       new google.picker.PickerBuilder()
         .addView(view)
         .setOAuthToken(token)

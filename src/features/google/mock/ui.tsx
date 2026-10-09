@@ -8,9 +8,9 @@ import { EmptyState } from "@/components/common/empty-state"
 import { ResponsiveDialog } from "@/components/common/responsive-dialog"
 import { t } from "@/lib/i18n/bn"
 import { lastEmail } from "@/features/auth/session"
-import { PRESET_ACCOUNTS } from "./store"
+import { PRESET_ACCOUNTS, type MockFile } from "./store"
 import { finishMockPicker, useMockPickerRequest } from "./picker"
-import { grantPickerAccess, mockFileVisibleTo } from "./drive"
+import { grantPickerAccess, mockFileVisibleTo, mockFilesSharedWith } from "./drive"
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -47,20 +47,24 @@ export function MockAccountChooser({ open, onOpenChange, onChoose }: { open: boo
   )
 }
 
-// Google Picker-এর মক: শুধু ওই একটা ফাইল, যদি এই অ্যাকাউন্ট যোগ করা থাকে
+// Google Picker-এর মক: fileId দিলে শুধু ওই ফাইল, null দিলে এই অ্যাকাউন্টের সাথে শেয়ার করা সব খাতা
 export function MockPickerDialog() {
   const req = useMockPickerRequest()
-  const file = req ? mockFileVisibleTo(req.fileId, req.me) : null
+  const files = !req ? [] : req.fileId ? [mockFileVisibleTo(req.fileId, req.me)].filter((f): f is MockFile => f !== null) : mockFilesSharedWith(req.me)
   return (
     <ResponsiveDialog open={req !== null} onOpenChange={(o) => !o && finishMockPicker(null)} title={t.join.pickerTitle} description={t.join.pickerHint}>
-      {req && file ? (
-        <Button variant="outline" className="h-16 w-full justify-start" onClick={() => { grantPickerAccess(req.fileId, req.me); finishMockPicker(req.fileId) }}>
-          <AppIcon name="sheet" size={24} className="text-emerald-700" />
-          <span className="flex flex-col text-left">
-            <span className="font-medium">{file.name}</span>
-            <span className="text-xs text-stone-500">{file.ownerName} · {file.owner}</span>
-          </span>
-        </Button>
+      {req && files.length > 0 ? (
+        <div className="flex flex-col gap-2">
+          {files.map((file) => (
+            <Button key={file.id} variant="outline" className="h-16 w-full justify-start" onClick={() => { grantPickerAccess(file.id, req.me); finishMockPicker(file.id) }}>
+              <AppIcon name="sheet" size={24} className="text-emerald-700" />
+              <span className="flex flex-col text-left">
+                <span className="font-medium">{file.name}</span>
+                <span className="text-xs text-stone-500">{file.ownerName} · {file.owner}</span>
+              </span>
+            </Button>
+          ))}
+        </div>
       ) : (
         <EmptyState icon="search" title={t.join.pickerEmpty} />
       )}
