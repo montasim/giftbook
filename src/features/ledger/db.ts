@@ -27,6 +27,7 @@ export function openLedger(fileId: string): LedgerDB {
 }
 
 export async function deleteLedgerLocal(fileId: string) {
+  localStorage.removeItem(`uk-file-${fileId}`)
   cache.get(fileId)?.close()
   cache.delete(fileId)
   await Dexie.delete(`ledger-${fileId}`)
