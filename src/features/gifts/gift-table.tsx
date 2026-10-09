@@ -34,7 +34,8 @@ export const DirectionBadge = ({ direction }: { direction: Direction }) => (
 )
 const ItemCell = ({ g }: { g: GiftWithPerson }) => (isPending(g) ? <StatusBadge tone="warning">{t.gift.pending}</StatusBadge> : g.item ? <>{g.item}</> : <span className="text-stone-400">—</span>)
 
-function SortHead({ label, k, sort, onSort, className }: { label: string; k: GiftSortKey; sort: GiftSort; onSort: (k: GiftSortKey) => void; className?: string }) {
+// সাজানো যায় এমন হেডার — গিফট টেবিল আর মানুষের ইতিহাস দুটোই ব্যবহার করে
+export function SortHead<TKey extends string>({ label, k, sort, onSort, className }: { label: string; k: TKey; sort: { key: TKey; dir: "asc" | "desc" }; onSort: (k: TKey) => void; className?: string }) {
   const active = sort.key === k
   return (
     <TableHead className={className} aria-sort={active ? (sort.dir === "asc" ? "ascending" : "descending") : "none"}>

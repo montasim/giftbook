@@ -100,6 +100,18 @@ export const t = {
     revokedBanner: 'এই খাতায় আর ঢোকার অনুমতি নেই।', keepCopy: 'ফোনের কপি রেখে দাও', deleteCopy: 'মুছে ফেলো',
     pendingWrites: (n: string | number) => `${n}টা লেখা শিটে যাওয়া বাকি`, pausedBanner: 'ফোনের কপি রাখা আছে, কিন্তু শিটে আর কিছু যাবে না।',
   },
+  privacy: {
+    title: 'গোপনীয়তা নীতি', updated: 'শেষ হালনাগাদ: ৯ অক্টোবর ২০২৬', link: 'গোপনীয়তা নীতি',
+    sections: [
+      { h: 'কী ডাটা, কোথায় থাকে', p: 'উপহারের খাতা আপনার অনুষ্ঠান, উপহার ও মানুষের তালিকা আপনার নিজের Google Drive-এ একটি Google Sheet-এ রাখে। অ্যাপের নিজস্ব কোনো সার্ভার বা ডাটাবেস নেই — আপনার ডাটা আমাদের কাছে যায় না, জমাও থাকে না।' },
+      { h: 'Google-এর কোন অনুমতি, কেন', p: 'অ্যাপ শুধু drive.file অনুমতি চায়: এতে সে কেবল নিজের বানানো বা আপনার বেছে দেওয়া ফাইলেই ঢুকতে পারে। আপনার বাকি Drive, ইমেইল বা অন্য কিছু দেখতে পারে না। অনুমতি যেকোনো সময় myaccount.google.com/permissions থেকে তুলে নিতে পারেন।' },
+      { h: 'ফোনে কী থাকে', p: 'দ্রুত ও অফলাইনে চালানোর জন্য খাতার একটি কপি আপনার ব্রাউজারে (IndexedDB) থাকে, সাথে সাইন-ইন সেশন ও Google-এর স্বল্পমেয়াদি access token। লগ আউট বা সেটিংস থেকে “ফোনের কপি মুছে ফেলো” দিলে এগুলো মুছে যায়।' },
+      { h: 'শেয়ার', p: 'খাতার মালিক QR বা লিংক দিয়ে পরিবারের সদস্যকে যুক্ত করলে Google Drive-এর শেয়ারিং দিয়েই শিটে অনুমতি যোগ হয়। কে কী দেখবে, তা Google Drive-এর শেয়ার তালিকাতেই নিয়ন্ত্রিত।' },
+      { h: 'ট্র্যাকিং ও বিজ্ঞাপন', p: 'কোনো অ্যানালিটিক্স, বিজ্ঞাপন বা থার্ড-পার্টি ট্র্যাকার নেই। Google ছাড়া অন্য কোনো সেবায় ডাটা পাঠানো হয় না।' },
+      { h: 'যোগাযোগ', p: 'প্রশ্ন থাকলে: montasim.portfolio@gmail.com' },
+    ],
+    english: 'Upohar Khata (উপহারের খাতা) stores your gift ledger in a Google Sheet inside your own Google Drive. The app has no server or database of its own and never receives or retains your data. It requests only the drive.file scope, so it can access files it created or you explicitly picked, nothing else. A local copy of the ledger, your session and a short-lived Google access token are kept in your browser for offline use and are removed on sign-out. Sharing uses Google Drive permissions. There are no analytics, ads or third-party trackers. Contact: montasim.portfolio@gmail.com.',
+  },
   print: { title: 'প্রিন্ট', total: 'মোট', serial: 'ক্রম', footer: 'উপহারের খাতা থেকে ছাপানো' },
   xlsx: { name: 'নাম', phone: 'ফোন', direction: 'পেলাম/দিলাম', amount: 'টাকা', item: 'জিনিস', note: 'নোট', event: 'অনুষ্ঠান', date: 'তারিখ', total: 'মোট' },
 }

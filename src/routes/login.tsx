@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router"
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -53,6 +53,7 @@ function LoginPage() {
           </Button>
           <p className="text-xs text-stone-500">{t.login.permissionNote}</p>
           <p className="text-xs text-stone-400">{t.login.flowNote}</p>
+          <Link to="/privacy" className="text-xs text-stone-400 underline-offset-2 hover:underline">{t.privacy.link}</Link>
         </CardContent>
       </Card>
       {isMock && (

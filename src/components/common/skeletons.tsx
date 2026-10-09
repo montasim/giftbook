@@ -105,18 +105,7 @@ export const PeopleSkeleton = () => (
     <div className="grid gap-2 md:grid-cols-2">{[0, 1, 2, 3, 4, 5].map((i) => <PersonCardSk key={i} />)}</div>
   </div>
 )
-export const PersonSkeleton = () => (
-  <div>
-    <HeaderSk />
-    <div className="flex flex-col gap-4 lg:grid lg:grid-cols-[18rem_1fr] lg:items-start lg:gap-6">
-      <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-3 gap-2 lg:grid-cols-1">{[0, 1, 2].map((i) => <StatSk key={i} />)}</div>
-        <Line w="w-44" h="h-11" className="rounded-lg" />
-      </div>
-      <TableSk rows={4} cols={4} />
-    </div>
-  </div>
-)
+export const PersonSkeleton = () => <EventSkeleton /> // অনুষ্ঠান পাতার সাথে একই কাঠামো
 export const ShareSkeleton = () => (
   <div>
     <HeaderSk action={false} sub={false} />

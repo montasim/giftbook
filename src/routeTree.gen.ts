@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SetupRouteImport } from './routes/setup'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
@@ -33,6 +34,11 @@ const JoinRoute = JoinRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SetupRoute = SetupRouteImport.update({
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
   '/settings': typeof AppSettingsRoute
   '/share': typeof AppShareRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
   '/settings': typeof AppSettingsRoute
   '/share': typeof AppShareRoute
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/share': typeof AppShareRoute
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/'
     | '/join'
     | '/login'
+    | '/privacy'
     | '/setup'
     | '/settings'
     | '/share'
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
   to:
     | '/join'
     | '/login'
+    | '/privacy'
     | '/setup'
     | '/settings'
     | '/share'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/_app'
     | '/join'
     | '/login'
+    | '/privacy'
     | '/setup'
     | '/_app/settings'
     | '/_app/share'
@@ -158,6 +170,7 @@ export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   JoinRoute: typeof JoinRoute
   LoginRoute: typeof LoginRoute
+  PrivacyRoute: typeof PrivacyRoute
   SetupRoute: typeof SetupRoute
   EventsEventIdPrintRoute: typeof EventsEventIdPrintRoute
 }
@@ -183,6 +196,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/setup': {
@@ -268,6 +288,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   JoinRoute: JoinRoute,
   LoginRoute: LoginRoute,
+  PrivacyRoute: PrivacyRoute,
   SetupRoute: SetupRoute,
   EventsEventIdPrintRoute: EventsEventIdPrintRoute,
 }
