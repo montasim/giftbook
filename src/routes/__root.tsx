@@ -45,16 +45,12 @@ export const Route = createRootRoute({
       { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
     ],
-    scripts: [
-      // সার্চ/শেয়ার কার্ডের জন্য structured data (schema.org WebApplication)
-      { type: "application/ld+json", children: JSON.stringify(site.jsonLd) },
-      ...(isMock
-        ? []
-        : [
-            { src: "https://accounts.google.com/gsi/client", async: true },
-            { src: "https://apis.google.com/js/api.js", async: true },
-          ]),
-    ],
+    scripts: isMock
+      ? []
+      : [
+          { src: "https://accounts.google.com/gsi/client", async: true },
+          { src: "https://apis.google.com/js/api.js", async: true },
+        ],
   }),
   notFoundComponent: NotFound,
   shellComponent: RootDocument,
@@ -81,6 +77,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="bn" suppressHydrationWarning>
       <head>
         <HeadContent />
+        {/* structured data (schema.org WebApplication) — head.scripts-এ দিলে prerendered shell-এর সাথে hydration mismatch (#418) হয়; dangerouslySetInnerHTML hydration-এ তুলনা হয় না */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(site.jsonLd) }} />
       </head>
       <body className="min-h-dvh">
         {children}
