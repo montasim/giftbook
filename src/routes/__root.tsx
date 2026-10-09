@@ -64,6 +64,15 @@ function App() {
     window.addEventListener("vite:preloadError", reload)
     return () => window.removeEventListener("vite:preloadError", reload)
   }, [])
+  // structured data (schema.org WebApplication) — mount-এর পর head-এ বসাই: prerendered shell-এর সাথে hydration mismatch (#418) এড়াতে; Google JS চালিয়ে পড়ে
+  useEffect(() => {
+    if (document.getElementById("ld-json")) return
+    const el = document.createElement("script")
+    el.id = "ld-json"
+    el.type = "application/ld+json"
+    el.text = JSON.stringify(site.jsonLd)
+    document.head.appendChild(el)
+  }, [])
   return (
     <>
       <Outlet />
@@ -77,8 +86,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="bn" suppressHydrationWarning>
       <head>
         <HeadContent />
-        {/* structured data (schema.org WebApplication) — head.scripts-এ দিলে prerendered shell-এর সাথে hydration mismatch (#418) হয়; dangerouslySetInnerHTML hydration-এ তুলনা হয় না */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(site.jsonLd) }} />
       </head>
       <body className="min-h-dvh">
         {children}

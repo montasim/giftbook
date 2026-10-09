@@ -21,3 +21,4 @@ todos.json
 # এগুলো commit হয় (secret নেই)
 !.env.example
 !.env.mock
+dist-dev
