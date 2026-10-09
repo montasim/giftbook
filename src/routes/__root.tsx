@@ -14,8 +14,10 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#047857" },
       { title: site.title },
+      { name: "application-name", content: site.name },
+      { name: "apple-mobile-web-app-title", content: site.name },
       { name: "description", content: site.description },
-      // সোশ্যাল প্রিভিউ (Open Graph + Twitter) — brand/og.html → public/og-v1.png; ছবি বদলালে নাম বদলাও (v2) যাতে ক্রলার ক্যাশ ফেলে
+      // সোশ্যাল প্রিভিউ (Open Graph + Twitter) — brand/og.html → public/og-v2.png; ছবি বদলালে নাম বদলাও (v2) যাতে ক্রলার ক্যাশ ফেলে
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: site.name },
       { property: "og:locale", content: "bn_BD" },
@@ -36,16 +38,23 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "canonical", href: site.url },
+      // favicon: ICO (16/32/48) সব ব্রাউজারের জন্য, PNG 32, SVG আধুনিকদের জন্য
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
     ],
-    scripts: isMock
-      ? []
-      : [
-          { src: "https://accounts.google.com/gsi/client", async: true },
-          { src: "https://apis.google.com/js/api.js", async: true },
-        ],
+    scripts: [
+      // সার্চ/শেয়ার কার্ডের জন্য structured data (schema.org WebApplication)
+      { type: "application/ld+json", children: JSON.stringify(site.jsonLd) },
+      ...(isMock
+        ? []
+        : [
+            { src: "https://accounts.google.com/gsi/client", async: true },
+            { src: "https://apis.google.com/js/api.js", async: true },
+          ]),
+    ],
   }),
   notFoundComponent: NotFound,
   shellComponent: RootDocument,

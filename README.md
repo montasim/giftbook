@@ -10,7 +10,7 @@
 
 **[লাইভ অ্যাপ: giftbook.netlify.app](https://giftbook.netlify.app)** — Google দিয়ে সাইন ইন (OAuth অ্যাপ Testing মোডে: Audience-এ যোগ করা test user-রাই ঢুকতে পারবে)।
 
-![উপহারের খাতা — সোশ্যাল প্রিভিউ](public/og-v1.png)
+![উপহারের খাতা — সোশ্যাল প্রিভিউ](public/og-v2.png)
 
 ## কী কী করা যায়
 
@@ -124,7 +124,7 @@ src/
 ├─ lib/               i18n/bn (সব লেখা) · format (টাকা, তারিখ, বাংলা অঙ্ক, ফোন) · focus · utils
 └─ test/              sync.test.ts
 brand/                og.html (সোশ্যাল প্রিভিউ টেমপ্লেট) · render.sh
-public/               logo.svg · favicon.svg · icon-192/512.png · apple-touch-icon.png · og-v1.png
+public/               logo.svg · favicon.svg · favicon.ico · favicon-32.png · icon-192/512.png · apple-touch-icon.png · og-v2.png
 docs/                 PLAN.md (v2, এই অ্যাপের স্পেক) · PLAN-v1.md · QA-REPORT.md · GAP-ANALYSIS.md · PROTOTYPE-README.md
 ```
 
@@ -132,13 +132,13 @@ docs/                 PLAN.md (v2, এই অ্যাপের স্পেক)
 
 ## ব্র্যান্ড ও সোশ্যাল প্রিভিউ
 
-লোগো: উপহারের ফিতায় বাঁধা খাতা — `public/logo.svg` উৎস; তা থেকেই favicon, PWA আইকন, apple-touch-icon। সোশ্যাল কার্ড (Open Graph / Twitter, 1200×630) `brand/og.html` থেকে রেন্ডার করা `public/og-v1.png`; মেটাট্যাগ `src/config/site.ts` → `src/routes/__root.tsx`, বিল্ডে `_shell.html`-এ প্রি-রেন্ডার হয় (সব রুট একই কার্ড)। রাস্টার আবার বানাতে (google-chrome লাগে):
+লোগো: উপহারের ফিতায় বাঁধা খাতা — `public/logo.svg` উৎস; তা থেকেই favicon (ico/png/svg), PWA আইকন, apple-touch-icon। সোশ্যাল কার্ড (Open Graph / Twitter, 1200×630) `brand/og.html` থেকে রেন্ডার করা `public/og-v2.png`; মেটাট্যাগ `src/config/site.ts` → `src/routes/__root.tsx`, বিল্ডে `_shell.html`-এ প্রি-রেন্ডার হয় (সব রুট একই কার্ড)। রাস্টার আবার বানাতে (google-chrome লাগে):
 
 ```bash
 bash brand/render.sh
 ```
 
-কার্ড বদলালে ফাইলের নাম বাড়াও (`og-v2.png`) আর `site.ts`-এ বদলাও — মেসেজিং অ্যাপের ক্রলার পুরোনো URL ক্যাশ করে রাখে।
+কার্ড বদলালে ফাইলের নাম বাড়াও (`og-v3.png`) আর `site.ts`-এ বদলাও — মেসেজিং অ্যাপের ক্রলার পুরোনো URL ক্যাশ করে রাখে।
 
 ## ডিপ্লয়
 

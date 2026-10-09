@@ -13,7 +13,7 @@ export default defineConfig({
     viteReact(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.svg", "logo.svg", "apple-touch-icon.png"],
+      includeAssets: ["favicon.ico", "favicon-32.png", "favicon.svg", "logo.svg", "apple-touch-icon.png"],
       manifest: {
         name: "উপহারের খাতা",
         short_name: "উপহারের খাতা",
