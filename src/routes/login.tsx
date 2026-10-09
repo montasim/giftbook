@@ -53,7 +53,10 @@ function LoginPage() {
           </Button>
           <p className="text-xs text-stone-500">{t.login.permissionNote}</p>
           <p className="text-xs text-stone-400">{t.login.flowNote}</p>
-          <Link to="/privacy" className="text-xs text-stone-400 underline-offset-2 hover:underline">{t.privacy.link}</Link>
+          <p className="flex gap-3 text-xs text-stone-400">
+            <Link to="/privacy" className="underline-offset-2 hover:underline">{t.privacy.link}</Link>
+            <Link to="/contact" className="underline-offset-2 hover:underline">{t.contact.link}</Link>
+          </p>
         </CardContent>
       </Card>
       {isMock && (

@@ -1,7 +1,8 @@
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router"
 import { useEffect } from "react"
 import { Toaster } from "@/components/ui/sonner"
-import { NotFound } from "@/components/common/not-found"
+import { NotFoundPage } from "@/components/common/not-found"
+import { ErrorPage } from "@/components/common/error-page"
 import { isMock } from "@/features/google"
 import { site } from "@/config/site"
 import appCss from "../styles.css?url"
@@ -52,7 +53,8 @@ export const Route = createRootRoute({
           { src: "https://apis.google.com/js/api.js", async: true },
         ],
   }),
-  notFoundComponent: NotFound,
+  notFoundComponent: NotFoundPage,
+  errorComponent: ErrorPage,
   shellComponent: RootDocument,
   component: App,
 })

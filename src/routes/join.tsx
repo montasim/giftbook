@@ -15,7 +15,7 @@ import { logout, setRedirect, useSession } from "@/features/auth/session"
 import { activateLedger } from "@/features/auth/activate"
 
 export const Route = createFileRoute("/join")({
-  validateSearch: z.object({ f: z.string().catch("") }),
+  validateSearch: z.object({ f: z.union([z.string(), z.number()]).transform(String).catch("") }),
   component: JoinPage,
 })
 
