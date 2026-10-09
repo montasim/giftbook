@@ -1,4 +1,5 @@
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router"
+import { useEffect } from "react"
 import { Toaster } from "@/components/ui/sonner"
 import { NotFound } from "@/components/common/not-found"
 import { isMock } from "@/features/google"
@@ -48,13 +49,23 @@ export const Route = createRootRoute({
   }),
   notFoundComponent: NotFound,
   shellComponent: RootDocument,
-  component: () => (
+  component: App,
+})
+
+function App() {
+  // নতুন ডিপ্লয়ের পর পুরোনো ট্যাবে lazy chunk-এর নাম বদলে যায় → "Failed to load module script"; একবার reload করলেই ঠিক
+  useEffect(() => {
+    const reload = () => window.location.reload()
+    window.addEventListener("vite:preloadError", reload)
+    return () => window.removeEventListener("vite:preloadError", reload)
+  }, [])
+  return (
     <>
       <Outlet />
       <Toaster position="bottom-center" offset={{ bottom: 80 }} mobileOffset={{ bottom: 80 }} />
     </>
-  ),
-})
+  )
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
