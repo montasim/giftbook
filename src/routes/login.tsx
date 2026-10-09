@@ -41,7 +41,7 @@ function LoginPage() {
     }
   }
   return (
-    <BareLayout>
+    <BareLayout brand={false}>{/* কার্ডেই বড় লোগো+নাম আছে — উপরে আবার নয় */}
       <Card>
         <CardContent className="flex flex-col items-center gap-4 p-6 text-center">
           <img src="/logo.svg" alt="" className="h-20 w-20" />
