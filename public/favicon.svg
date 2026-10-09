@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="উপহারের খাতা">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#059669"/>
+      <stop offset="1" stop-color="#065f46"/>
+    </linearGradient>
+  </defs>
+  <!-- পটভূমি: emerald-600 → emerald-800 (theme #047857 মাঝখানে) -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- খাতা: বাঁয়ে মলাটের স্পাইন (stone-300), ডানে সাদা পাতা -->
+  <rect x="15" y="13" width="10" height="38" rx="4" fill="#d6d3d1"/>
+  <rect x="20" y="13" width="29" height="38" rx="4" fill="#ffffff"/>
+  <!-- পাতার দাগ -->
+  <path d="M25 22h6M25 44h6M39 22h6M39 44h6" stroke="#d6d3d1" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- উপহারের ফিতা: আড়াআড়ি + লম্বালম্বি (amber-500) -->
+  <rect x="15" y="30" width="34" height="6" fill="#f59e0b"/>
+  <rect x="32" y="13" width="6" height="38" fill="#f59e0b"/>
+  <!-- ফিতার ফুল: দুই পাশে লুপ, নিচে দুই লেজ, মাঝে গিঁট -->
+  <path d="M35 33c-2-6-8-7-10-4.5-2 2.5 2 5.5 10 4.5z" fill="#fbbf24" stroke="#d97706" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M35 33c2-6 8-7 10-4.5 2 2.5-2 5.5-10 4.5z" fill="#fbbf24" stroke="#d97706" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M34 34l-3.5 6 4-1.6zM36 34l3.5 6-4-1.6z" fill="#d97706"/>
+  <circle cx="35" cy="33" r="2.6" fill="#d97706"/>
+</svg>

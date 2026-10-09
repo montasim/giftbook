@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- সোশ্যাল প্রিভিউ টেমপ্লেট (1200×630) → bash brand/render.sh → public/og-v1.png -->
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../node_modules/@fontsource/hind-siliguri/400.css">
+<link rel="stylesheet" href="../node_modules/@fontsource/hind-siliguri/600.css">
+<link rel="stylesheet" href="../node_modules/@fontsource/hind-siliguri/700.css">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { font-family: "Hind Siliguri", system-ui, sans-serif; color: #1c1917; background: #fafaf9; position: relative; }
+  .glow { position: absolute; right: -180px; top: -220px; width: 760px; height: 760px; border-radius: 50%;
+          background: radial-gradient(closest-side, #d1fae5 0%, rgba(209,250,229,0) 100%); }
+  .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: linear-gradient(#059669, #065f46); }
+  .left { position: absolute; left: 92px; top: 96px; width: 620px; }
+  .brand { display: flex; align-items: center; gap: 22px; }
+  .brand img { width: 96px; height: 96px; }
+  .brand h1 { font-size: 80px; font-weight: 700; line-height: 1; letter-spacing: -0.5px; color: #064e3b; }
+  .tag { margin-top: 30px; font-size: 40px; font-weight: 600; line-height: 1.25; color: #292524; }
+  .sub { margin-top: 14px; font-size: 27px; line-height: 1.4; color: #57534e; }
+  .chips { margin-top: 38px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .chip { font-size: 22px; font-weight: 600; color: #065f46; background: #ecfdf5; border: 1.5px solid #a7f3d0;
+          border-radius: 999px; padding: 6px 18px; }
+  .card { position: absolute; right: 92px; top: 126px; width: 356px; background: #fff; border: 1.5px solid #e7e5e4;
+          border-radius: 20px; box-shadow: 0 24px 60px -24px rgba(6,78,59,.35); overflow: hidden; }
+  .card .head { padding: 18px 22px 14px; border-bottom: 1px solid #f5f5f4; }
+  .card .head b { font-size: 24px; font-weight: 700; }
+  .card .head span { display: block; font-size: 17px; color: #78716c; margin-top: 2px; }
+  .row { display: flex; align-items: center; gap: 12px; padding: 13px 22px; border-bottom: 1px solid #f5f5f4; }
+  .row:last-child { border-bottom: 0; }
+  .av { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 18px;
+        background: #ecfdf5; color: #047857; flex: none; }
+  .nm { flex: 1; font-size: 20px; font-weight: 600; }
+  .nm small { display: block; font-weight: 400; font-size: 15px; color: #a8a29e; }
+  .amt { font-size: 20px; font-weight: 700; color: #047857; }
+  .amt.g { color: #b45309; }
+  .pill { font-size: 14px; font-weight: 600; border-radius: 999px; padding: 2px 10px; background: #ecfdf5; color: #047857; }
+  .pill.g { background: #fffbeb; color: #b45309; }
+  .foot { padding: 14px 22px; background: #fafaf9; display: flex; justify-content: space-between; font-size: 17px; color: #57534e; }
+  .foot b { color: #1c1917; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="bar"></div>
+  <div class="left">
+    <div class="brand"><img src="../public/logo.svg" alt=""><h1>উপহারের খাতা</h1></div>
+    <div class="tag">পরিবারের উপহারের হিসাব, এক জায়গায়</div>
+    <div class="sub">বিয়ে, আকিকা, জন্মদিন — কে কী দিল, কাকে কী দিলাম। খাতা থাকে আপনার Google Sheet-এ।</div>
+    <div class="chips"><span class="chip">অফলাইনেও চলে</span><span class="chip">QR দিয়ে শেয়ার</span><span class="chip">এক্সেল ও প্রিন্ট</span></div>
+  </div>
+  <div class="card">
+    <div class="head"><b>সাকিবের বিয়ে</b><span>বিয়ে · ১২ ফেব্রুয়ারি ২০২৬</span></div>
+    <div class="row"><div class="av">র</div><div class="nm">রহিম মামা<small>খুলনা</small></div><span class="pill">পেলাম</span><span class="amt">৳ ৫,০০০</span></div>
+    <div class="row"><div class="av">স</div><div class="nm">সালমা খালা<small>শাড়ি</small></div><span class="pill">পেলাম</span><span class="amt">—</span></div>
+    <div class="row"><div class="av">ক</div><div class="nm">করিম চাচা<small>ধানমন্ডি</small></div><span class="pill g">দিলাম</span><span class="amt g">৳ ২,০০০</span></div>
+    <div class="foot"><span>মোট পেলাম <b>৳ ৪৫,৫০০</b></span><span>খাম বাকি <b>৩</b></span></div>
+  </div>
+</body>
+</html>
