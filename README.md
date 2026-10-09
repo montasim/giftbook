@@ -152,6 +152,8 @@ pnpm deploy
 
 Infisical `prod` env থেকে secrets নিয়ে লোকালে বিল্ড, তারপর `dist/client` আপলোড (Netlify-র build minute খরচ হয় না; Netlify CLI `npx` দিয়ে, লগইন `netlify login` একবার)।
 
+`netlify.toml`-এ পরিচিত রুটগুলো `_shell.html`-এ 200 rewrite, অজানা পাথ একই shell কিন্তু **HTTP 404** (অ্যাপ নিজের ৪০৪ পাতা দেখায়)। নতুন টপ-লেভেল রুট যোগ করলে সেখানে একটা rule যোগ করো।
+
 **Netlify remote build (git যুক্ত করলে):** `netlify.toml`-এর build command Infisical CLI ইনস্টল করে machine identity দিয়ে লগইন করে `infisical run --env=prod -- pnpm build` চালায়। Netlify env-এ লাগে:
 
 | Netlify env | কী |
