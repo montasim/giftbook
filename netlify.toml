@@ -5,7 +5,64 @@
   command = "npm i -g @infisical/cli && export INFISICAL_TOKEN=$(infisical login --method=universal-auth --silent --plain) && infisical run --projectId=$INFISICAL_PROJECT_ID --env=prod --silent -- pnpm build"
   publish = "dist/client"
 
+# পরিচিত রুট → SPA shell (200)। আসল ফাইল (assets, png, svg…) থাকলে redirect হয় না।
+[[redirects]]
+  from = "/"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/setup"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/join"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/share"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/settings"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/people"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/people/*"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/events/*"
+  to = "/_shell.html"
+  status = 200
+
+# বাকি সব অজানা পাথ: একই SPA shell, কিন্তু আসল HTTP 404 (অ্যাপ 404 পাতা দেখায়, ক্রলারও 404 পায়)
 [[redirects]]
   from = "/*"
   to = "/_shell.html"
-  status = 200
+  status = 404
