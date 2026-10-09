@@ -1,0 +1,11 @@
+[build]
+  # Remote build: secrets Infisical থেকে (machine identity, universal auth)।
+  # Netlify env-এ লাগে: INFISICAL_PROJECT_ID (public), INFISICAL_UNIVERSAL_AUTH_CLIENT_ID, INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET (secret)।
+  # লোকাল ম্যানুয়াল ডিপ্লয়ে এটা চলে না: pnpm deploy (= infisical run --env=prod -- vite build → netlify deploy --no-build)।
+  command = "npm i -g @infisical/cli && export INFISICAL_TOKEN=$(infisical login --method=universal-auth --silent --plain) && infisical run --projectId=$INFISICAL_PROJECT_ID --env=prod --silent -- pnpm build"
+  publish = "dist/client"
+
+[[redirects]]
+  from = "/*"
+  to = "/_shell.html"
+  status = 200
