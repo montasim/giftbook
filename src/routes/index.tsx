@@ -7,7 +7,7 @@ import { Stat } from "@/components/common/stat"
 import { StatusBadge } from "@/components/common/status-badge"
 import { type IconName } from "@/config/icons"
 import { t } from "@/lib/i18n"
-import { toBanglaDigits } from "@/lib/format"
+import { digits } from "@/lib/format"
 import { useSession } from "@/features/auth/session"
 import { cn } from "@/lib/utils"
 
@@ -88,7 +88,7 @@ function LandingPage() {
             <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {l.how.map((s, i) => (
                 <li key={s.h} className="flex gap-4 sm:flex-col">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-lg font-bold text-white">{toBanglaDigits(i + 1)}</span>
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-700 text-lg font-bold text-white">{digits(i + 1)}</span>
                   <div>
                     <h3 className="font-semibold">{s.h}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-stone-600">{s.p}</p>
@@ -183,7 +183,7 @@ function DemoCard() {
         <div className="grid grid-cols-3 gap-2 p-3">
           <Stat label={t.event.received} value={<Money value={45500} tone="received" />} />
           <Stat label={t.event.given} value={<Money value={2000} tone="given" />} />
-          <Stat label={t.event.pendingTitle} value={<span className="font-semibold text-amber-700">{toBanglaDigits(3)}</span>} />
+          <Stat label={t.event.pendingTitle} value={<span className="font-semibold text-amber-700">{digits(3)}</span>} />
         </div>
         <ul className="divide-y divide-stone-100">
           {l.demoRows.map((r) => {

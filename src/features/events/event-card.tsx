@@ -6,7 +6,7 @@ import { PartialDate } from "@/components/common/partial-date"
 import { StatusBadge } from "@/components/common/status-badge"
 import { eventType } from "@/config/event-types"
 import { t } from "@/lib/i18n"
-import { toBanglaDigits } from "@/lib/format"
+import { digits } from "@/lib/format"
 import type { LedgerEvent } from "@/features/ledger/schema"
 import type { Totals } from "@/features/ledger/queries"
 
@@ -36,8 +36,8 @@ export function EventCard({ event, totals }: { event: LedgerEvent; totals: Total
                 <AppIcon name="out" size={16} className="text-amber-700" />
                 {t.event.given} <Money value={totals.given} tone="given" />
               </span>
-              <span className="text-stone-400">{t.home.gifts(toBanglaDigits(totals.count))}</span>
-              {totals.pending > 0 && <StatusBadge tone="warning">{t.home.pending(toBanglaDigits(totals.pending))}</StatusBadge>}
+              <span className="text-stone-400">{t.home.gifts(digits(totals.count))}</span>
+              {totals.pending > 0 && <StatusBadge tone="warning">{t.home.pending(digits(totals.pending))}</StatusBadge>}
             </div>
           )}
         </div>

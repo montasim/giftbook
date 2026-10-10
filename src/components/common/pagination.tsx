@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { AppIcon } from "./app-icon"
 import { t } from "@/lib/i18n"
-import { toBanglaDigits } from "@/lib/format"
+import { digits } from "@/lib/format"
 import { cn } from "@/lib/utils"
 
 export const PAGE_SIZE = 20
@@ -20,7 +20,7 @@ export function Pagination({ page, total, pageSize = PAGE_SIZE, onChange, classN
   })
   return (
     <div className={cn("flex flex-wrap items-center justify-between gap-2", className)}>
-      <p className="text-sm text-stone-500">{t.common.pageRange(toBanglaDigits(from), toBanglaDigits(to), toBanglaDigits(total))}</p>
+      <p className="text-sm text-stone-500">{t.common.pageRange(digits(from), digits(to), digits(total))}</p>
       <nav className="flex items-center gap-1" aria-label={t.common.pagination}>
         <Button variant="outline" size="icon-xs" aria-label={t.common.prev} disabled={page <= 1} onClick={() => onChange(page - 1)}>
           <AppIcon name="back" size={16} />
@@ -30,7 +30,7 @@ export function Pagination({ page, total, pageSize = PAGE_SIZE, onChange, classN
             <span key={`e${i}`} className="px-1 text-stone-400">…</span>
           ) : (
             <Button key={it} variant={it === page ? "default" : "outline"} size="icon-xs" aria-current={it === page ? "page" : undefined} onClick={() => onChange(it)}>
-              {toBanglaDigits(it)}
+              {digits(it)}
             </Button>
           )
         )}

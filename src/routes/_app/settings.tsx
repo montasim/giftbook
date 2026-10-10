@@ -21,7 +21,7 @@ import { auth, drive, isMock } from "@/features/google"
 import { logout, resetEverything, setActiveFile } from "@/features/auth/session"
 import { reset as resetSync, setSimulate, statusOf, syncNow, useSync } from "@/features/sync/sync-engine"
 import { t } from "@/lib/i18n"
-import { formatDateTime, toBanglaDigits } from "@/lib/format"
+import { formatDateTime, digits } from "@/lib/format"
 
 export const Route = createFileRoute("/_app/settings")({ component: SettingsPage })
 const DEV = isMock || import.meta.env.DEV
@@ -74,9 +74,9 @@ function SettingsPage() {
               <div className="flex flex-wrap items-center justify-between gap-2 pt-3">
                 <p className="text-xs text-stone-500">
                   {t.sync.lastSync}: {sync.lastSyncAt ? formatDateTime(sync.lastSyncAt) : t.sync.never}
-                  {sync.pending ? ` · ${t.sync.pendingWrites(toBanglaDigits(sync.pending))}` : ""}
-                  {sync.last ? ` · ${t.sync.lastCycle(toBanglaDigits(sync.last.pulled.gifts), toBanglaDigits(sync.last.updated), toBanglaDigits(sync.last.appended))}` : ""}
-                  {sync.last?.rejected.length ? ` · ${t.settings.rejected(toBanglaDigits(sync.last.rejected.length))}` : ""}
+                  {sync.pending ? ` · ${t.sync.pendingWrites(digits(sync.pending))}` : ""}
+                  {sync.last ? ` · ${t.sync.lastCycle(digits(sync.last.pulled.gifts), digits(sync.last.updated), digits(sync.last.appended))}` : ""}
+                  {sync.last?.rejected.length ? ` · ${t.settings.rejected(digits(sync.last.rejected.length))}` : ""}
                 </p>
                 <Button variant="outline" size="sm" disabled={statusOf(sync) === "syncing"} onClick={() => void syncNow()}><AppIcon name="sync" size={16} />{t.sync.syncNowBtn}</Button>
               </div>

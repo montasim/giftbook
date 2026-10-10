@@ -12,7 +12,7 @@ import { DirectionToggle } from "./direction-toggle"
 import { selectPeople } from "@/features/ledger/queries"
 import { emptyPerson, type Direction, type Gift } from "@/features/ledger/schema"
 import { t } from "@/lib/i18n"
-import { normalizePhone, parseAmount, toBanglaDigits } from "@/lib/format"
+import { normalizePhone, parseAmount, digits } from "@/lib/format"
 
 export function GiftFormDialog({ gift, onOpenChange }: { gift: Gift | null; onOpenChange: (o: boolean) => void }) {
   return (
@@ -29,7 +29,7 @@ function GiftForm({ gift, onDone }: { gift: Gift; onDone: () => void }) {
   const [sel, setSel] = useState<PersonChoice>({ personId: gift.personId, name: person?.name ?? "" })
   const [phone, setPhone] = useState(person?.phone ?? "")
   const [direction, setDirection] = useState<Direction>(gift.direction)
-  const [amount, setAmount] = useState(gift.amount == null ? "" : toBanglaDigits(gift.amount))
+  const [amount, setAmount] = useState(gift.amount == null ? "" : digits(gift.amount))
   const [item, setItem] = useState(gift.item)
   const [note, setNote] = useState(gift.note)
   const [err, setErr] = useState<string | null>(null)

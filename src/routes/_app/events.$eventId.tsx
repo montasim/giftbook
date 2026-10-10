@@ -24,7 +24,7 @@ import { selectEvent, selectEventGifts, totals } from "@/features/ledger/queries
 import { isPending, type Gift } from "@/features/ledger/schema"
 import { eventType } from "@/config/event-types"
 import { t } from "@/lib/i18n"
-import { formatPartialDate, toBanglaDigits } from "@/lib/format"
+import { formatPartialDate, digits } from "@/lib/format"
 
 export const Route = createFileRoute("/_app/events/$eventId")({ component: EventPage })
 
@@ -52,7 +52,7 @@ function EventPage() {
   const safePage = Math.min(page, Math.max(1, Math.ceil(visible.length / PAGE_SIZE)))
   const paged = visible.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE)
   const type = eventType(event.type)
-  const count = (n: number) => <span className="ml-1 rounded-full bg-stone-200 px-1.5 text-xs text-stone-600">{toBanglaDigits(n)}</span>
+  const count = (n: number) => <span className="ml-1 rounded-full bg-stone-200 px-1.5 text-xs text-stone-600">{digits(n)}</span>
 
   return (
     <div>

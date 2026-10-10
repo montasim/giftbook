@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router"
+import { collate } from "@/lib/format"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { AppIcon } from "@/components/common/app-icon"
 import { Money } from "@/components/common/money"
@@ -17,7 +18,7 @@ export const DEFAULT_HISTORY_SORT: HistorySort = { key: "date", dir: "desc" }
 // সাজানো: তারিখ · অনুষ্ঠান (bn locale) · দিক · টাকা (null শেষে) · জিনিস; টাই → নতুনটা আগে
 export function sortHistory(history: GiftWithEvent[], sort: HistorySort): GiftWithEvent[] {
   const m = sort.dir === "asc" ? 1 : -1
-  const str = (a: string, b: string) => a.localeCompare(b, "bn")
+  const str = (a: string, b: string) => collate(a, b)
   const cmp: Record<HistorySortKey, (a: GiftWithEvent, b: GiftWithEvent) => number> = {
     date: (a, b) => str(a.event.date, b.event.date),
     event: (a, b) => str(a.event.name, b.event.name),

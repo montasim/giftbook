@@ -12,7 +12,7 @@ import { EventCard } from "@/features/events/event-card"
 import { EventFormDialog } from "@/features/events/event-form"
 import { selectAllTotals, selectEvents, totalsByEvent } from "@/features/ledger/queries"
 import { t } from "@/lib/i18n"
-import { toBanglaDigits } from "@/lib/format"
+import { digits } from "@/lib/format"
 import { cn } from "@/lib/utils"
 
 export const Route = createFileRoute("/_app/events/")({ component: HomePage })
@@ -31,13 +31,13 @@ function HomePage() {
   )
   return (
     <div>
-      <PageHeader title={t.home.title} crumbs={[{ label: t.home.title }]} subtitle={events.length ? t.home.gifts(toBanglaDigits(all.count)) : null} actions={events.length > 0 && newBtn("hidden sm:inline-flex")} />
+      <PageHeader title={t.home.title} crumbs={[{ label: t.home.title }]} subtitle={events.length ? t.home.gifts(digits(all.count)) : null} actions={events.length > 0 && newBtn("hidden sm:inline-flex")} />
       {events.length > 0 && (
         <div className="mb-4 grid grid-cols-2 gap-2 md:grid-cols-4 lg:mb-6">
           <Stat label={`${t.home.allTime} · ${t.event.received}`} value={<Money value={all.received} tone="received" />} />
           <Stat label={`${t.home.allTime} · ${t.event.given}`} value={<Money value={all.given} tone="given" />} />
           <Stat label={t.event.net} value={<Money value={all.net} tone={all.net >= 0 ? "received" : "given"} />} />
-          <Stat label={t.event.pendingTitle} value={<span className={cn("font-semibold", all.pending ? "text-amber-700" : "text-stone-400")}>{toBanglaDigits(all.pending)}</span>} />
+          <Stat label={t.event.pendingTitle} value={<span className={cn("font-semibold", all.pending ? "text-amber-700" : "text-stone-400")}>{digits(all.pending)}</span>} />
         </div>
       )}
       {events.length === 0 ? (

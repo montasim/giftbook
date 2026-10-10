@@ -11,7 +11,7 @@ import { selectEvent, selectEventGifts, totals, type LedgerData } from "@/featur
 import { isPending } from "@/features/ledger/schema"
 import { eventType } from "@/config/event-types"
 import { t } from "@/lib/i18n"
-import { formatPartialDate, toBanglaDigits } from "@/lib/format"
+import { formatPartialDate, digits, collate } from "@/lib/format"
 
 // খাতার মতো: সরল লাইন, বড় বাংলা ফন্ট; shell নেই
 export const Route = createFileRoute("/events/$eventId/print")({
@@ -30,7 +30,7 @@ function PrintPage({ data }: { data: LedgerData }) {
   const { eventId } = Route.useParams()
   const event = selectEvent(data, eventId)
   if (!event) return <NotFound />
-  const gifts = [...selectEventGifts(data, event.id)].sort((a, b) => (a.person?.name ?? "").localeCompare(b.person?.name ?? "", "bn"))
+  const gifts = [...selectEventGifts(data, event.id)].sort((a, b) => collate(a.person?.name ?? "", b.person?.name ?? ""))
   const sum = totals(gifts)
   const th = "text-base text-stone-900"
   return (
@@ -62,7 +62,7 @@ function PrintPage({ data }: { data: LedgerData }) {
         <TableBody>
           {gifts.map((g, i) => (
             <TableRow key={g.id} className="border-stone-300">
-              <TableCell className="text-stone-500">{toBanglaDigits(i + 1)}</TableCell>
+              <TableCell className="text-stone-500">{digits(i + 1)}</TableCell>
               <TableCell className="font-medium">
                 {g.person?.name ?? ""}
                 {g.person?.relation && <span className="text-sm text-stone-500"> ({g.person.relation})</span>}

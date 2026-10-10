@@ -1,4 +1,5 @@
 import { env } from "@/config/env"
+import { lang } from "@/lib/i18n"
 import type { PickerApi } from "../types"
 
 let loaded: Promise<void> | null = null
@@ -15,7 +16,7 @@ export const realPicker: PickerApi = {
         .setOAuthToken(token)
         .setDeveloperKey(env.VITE_GOOGLE_API_KEY)
         .setAppId(env.VITE_GOOGLE_APP_ID) // এটা ছাড়া drive.file অনুমতি মিলবে না
-        .setLocale("bn")
+        .setLocale(lang)
         .setCallback((d: google.picker.ResponseObject) => {
           if (d.action === google.picker.Action.PICKED) resolve(d.docs?.[0]?.id ?? null)
           if (d.action === google.picker.Action.CANCEL) resolve(null)

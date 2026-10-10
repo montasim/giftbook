@@ -1,4 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { collate } from "@/lib/format"
 import { AppIcon } from "@/components/common/app-icon"
 import { Money } from "@/components/common/money"
 import { StatusBadge } from "@/components/common/status-badge"
@@ -14,7 +15,7 @@ export const DEFAULT_GIFT_SORT: GiftSort = { key: "updatedAt", dir: "desc" }
 // সাজানো: নাম (bn locale) · দিক · টাকা (null শেষে) · জিনিস · নোট · সময়
 export function sortGifts(gifts: GiftWithPerson[], sort: GiftSort): GiftWithPerson[] {
   const m = sort.dir === "asc" ? 1 : -1
-  const str = (a: string, b: string) => a.localeCompare(b, "bn")
+  const str = (a: string, b: string) => collate(a, b)
   const cmp: Record<GiftSortKey, (a: GiftWithPerson, b: GiftWithPerson) => number> = {
     person: (a, b) => str(a.person?.name ?? "", b.person?.name ?? ""),
     direction: (a, b) => str(a.direction, b.direction),

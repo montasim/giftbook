@@ -1,4 +1,5 @@
 import type { Gift, LedgerEvent, Person } from "./schema.ts"
+import { collate } from "@/lib/format"
 import { isPending } from "./schema.ts"
 
 // বিশুদ্ধ সিলেক্টর। deletedAt এখানেই বাদ, কম্পোনেন্টে না।
@@ -8,7 +9,7 @@ export type GiftWithEvent = Gift & { event: LedgerEvent }
 export type Totals = { received: number; given: number; net: number; count: number; pending: number }
 
 const live = <T extends { deletedAt: string | null }>(rows: T[]) => rows.filter((r) => !r.deletedAt)
-const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name, "bn")
+const byName = (a: { name: string }, b: { name: string }) => collate(a.name, b.name)
 
 export const selectEvents = (db: LedgerData) => live(db.events).sort((a, b) => b.date.localeCompare(a.date) || b.updatedAt.localeCompare(a.updatedAt))
 export const selectEvent = (db: LedgerData, id: string) => live(db.events).find((e) => e.id === id) ?? null
