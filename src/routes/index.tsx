@@ -5,6 +5,7 @@ import { AppIcon } from "@/components/common/app-icon"
 import { Money } from "@/components/common/money"
 import { Stat } from "@/components/common/stat"
 import { StatusBadge } from "@/components/common/status-badge"
+import { LangSwitch } from "@/components/common/lang-switch"
 import { type IconName } from "@/config/icons"
 import { t } from "@/lib/i18n"
 import { digits } from "@/lib/format"
@@ -31,7 +32,8 @@ function LandingPage() {
             <a href="#how" className="hover:text-stone-900">{l.nav.how}</a>
             <a href="#faq" className="hover:text-stone-900">{l.nav.faq}</a>
           </nav>
-          <Button asChild size="sm" className="ml-auto sm:ml-0">
+          <LangSwitch className="ml-auto text-sm text-stone-600 hover:text-stone-900 sm:ml-0" />
+          <Button asChild size="sm">
             <Link to={cta.to}>{user ? l.openApp : l.login}</Link>
           </Button>
         </div>

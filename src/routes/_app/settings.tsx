@@ -10,6 +10,7 @@ import { AppIcon } from "@/components/common/app-icon"
 import { AvatarInitial } from "@/components/common/avatar-initial"
 import { ConfirmDialog } from "@/components/common/confirm-dialog"
 import { Field } from "@/components/common/field"
+import { LangSwitch } from "@/components/common/lang-switch"
 import { PageHeader } from "@/components/common/page-header"
 import { ResponsiveDialog } from "@/components/common/responsive-dialog"
 import { useLedger } from "@/components/common/ledger-context"
@@ -20,7 +21,7 @@ import { seedData } from "@/features/ledger/seed"
 import { auth, drive, isMock } from "@/features/google"
 import { logout, resetEverything, setActiveFile } from "@/features/auth/session"
 import { reset as resetSync, setSimulate, statusOf, syncNow, useSync } from "@/features/sync/sync-engine"
-import { t } from "@/lib/i18n"
+import { lang, t } from "@/lib/i18n"
 import { formatDateTime, digits } from "@/lib/format"
 
 export const Route = createFileRoute("/_app/settings")({ component: SettingsPage })
@@ -56,6 +57,13 @@ function SettingsPage() {
                 <p className="truncate text-sm text-stone-500">{user.email}</p>
               </div>
               <Button variant="outline" onClick={() => setSignOutOpen(true)}><AppIcon name="logout" size={16} />{t.settings.signOut}</Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader><CardTitle>{t.settings.language}</CardTitle></CardHeader>
+            <CardContent className="flex items-center justify-between gap-3">
+              <span className="text-sm text-stone-600">{lang === "bn" ? "বাংলা" : "English"}</span>
+              <LangSwitch button />
             </CardContent>
           </Card>
           <Card>

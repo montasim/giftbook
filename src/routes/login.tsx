@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { AppIcon } from "@/components/common/app-icon"
 import { BareLayout } from "@/components/common/bare-layout"
 import { t } from "@/lib/i18n"
+import { LangSwitch } from "@/components/common/lang-switch"
 import { auth, isMock } from "@/features/google"
 import { chooseMockAccount } from "@/features/google/mock/auth"
 import { MockAccountChooser } from "@/features/google/mock/ui"
@@ -57,6 +58,7 @@ function LoginPage() {
             <Link to="/about" className="underline-offset-2 hover:underline">{t.about.link}</Link>
             <Link to="/privacy" className="underline-offset-2 hover:underline">{t.privacy.link}</Link>
             <Link to="/contact" className="underline-offset-2 hover:underline">{t.contact.link}</Link>
+            <LangSwitch className="underline-offset-2" />
           </p>
         </CardContent>
       </Card>

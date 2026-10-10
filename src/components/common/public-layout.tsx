@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router"
 import type { ReactNode } from "react"
 import { t } from "@/lib/i18n"
+import { LangSwitch } from "./lang-switch"
 
 // লগইন-ছাড়া পাতা (privacy, contact, 404, 500): উপরে ব্র্যান্ড, main-এর প্রস্থ AppShell-এর সমান, নিচে লিংক
 export const PublicLayout = ({ children }: { children: ReactNode }) => (
@@ -18,6 +19,7 @@ export const PublicLayout = ({ children }: { children: ReactNode }) => (
       <Link to="/about" className="hover:underline">{t.about.link}</Link>
       <Link to="/privacy" className="hover:underline">{t.privacy.link}</Link>
       <Link to="/contact" className="hover:underline">{t.contact.link}</Link>
+      <LangSwitch />
     </footer>
   </div>
 )
