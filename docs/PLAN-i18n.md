@@ -228,7 +228,7 @@ test("i18n: নতুন key দুই ভাষায়", () => {
   months: ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
   time: { justNow: 'এইমাত্র', minutesAgo: (n: string) => `${n} মিনিট আগে`, hoursAgo: (n: string) => `${n} ঘণ্টা আগে`, daysAgo: (n: string) => `${n} দিন আগে` },
   eventTypes: { wedding: 'বিয়ে', holud: 'গায়ে হলুদ', walima: 'বউভাত', aqiqah: 'আকিকা', khatna: 'খতনা', birthday: 'জন্মদিন', other: 'অন্যান্য' },
-  lang: { label: 'ভাষা', other: 'English', otherCode: 'en' as const },
+  lang: { label: 'ভাষা', other: 'English', otherCode: 'en' as Lang }, // import type { Lang } from "./lang.ts" — as const হলে en-এ 'bn' বসানো যায় না
   // settings-এর ভেতরে:
     demoMode: 'ডেমো মোড', language: 'ভাষা / Language',
   // seo-এর ভেতরে:
@@ -246,7 +246,7 @@ test("i18n: নতুন key দুই ভাষায়", () => {
 - `appName: 'Upohar Khata'`, `tagline: 'Your family gift ledger, in one place'`।
 - `months`: `['January', …, 'December']`; `time`: `justNow: 'just now'`, `minutesAgo: (n) => \`${n} min ago\``, `hoursAgo: (n) => \`${n} h ago\``, `daysAgo: (n) => \`${n} d ago\``।
 - `eventTypes`: `wedding: 'Wedding', holud: 'Gaye holud', walima: 'Walima', aqiqah: 'Aqiqah', khatna: 'Khatna', birthday: 'Birthday', other: 'Other'`।
-- `lang: { label: 'Language', other: 'বাংলা', otherCode: 'bn' as const }`।
+- `lang: { label: 'Language', other: 'বাংলা', otherCode: 'bn' }`।
 - `privacy.sections`: ইংরেজিতে পুরো নীতি (bn-এর ৬ সেকশনই অনুবাদ); `privacy.english: ''` (en মোডে ডুপ্লিকেট ব্লক দেখানো হবে না — Task 5); `privacy.updated: 'Last updated: 9 October 2026'`।
 - `landing.*`: হিরো, ফিচার, how-to, FAQ — পূর্ণ অনুবাদ; `demoEvent`/`demoRows` ডেমো কার্ডের নাম ইংরেজি (যেমন `Sakib's wedding`, `Rahim mama`)।
 - `xlsx.*`/`print.*`: কলাম হেডার ইংরেজি (`Name, Phone, Received/Given, Amount, Item, Note, Event, Date, Total`)।

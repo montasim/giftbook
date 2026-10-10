@@ -1,11 +1,18 @@
 // বাংলা — রেফারেন্স ডিকশনারি; en.ts একই আকারে (Dict)। কনজিউমার import করে "@/lib/i18n" থেকে।
+import type { Lang } from "./lang.ts"
+
 export const bn = {
   appName: 'উপহারের খাতা',
   tagline: 'পরিবারের উপহারের হিসাব, এক জায়গায়',
   seo: {
     description: 'বিয়ে, আকিকা, জন্মদিন — কে কী দিল, কাকে কী দিলাম, সব এক খাতায়। খাতা থাকে আপনার Google Sheet-এ, অ্যাপ চলে ফোনে, অফলাইনেও; পরিবার শেয়ার করে QR দিয়ে।',
     imageAlt: 'উপহারের খাতা — পরিবারের উপহারের হিসাব, এক জায়গায়। পাশে একটি অনুষ্ঠানের উপহার তালিকার নমুনা।',
+    features: ['অনুষ্ঠান ও উপহারের হিসাব', 'Google Sheet-এ ডাটা', 'অফলাইনেও চলে', 'QR দিয়ে পরিবারের সাথে শেয়ার', 'এক্সেল ও প্রিন্ট'],
   },
+  lang: { label: 'ভাষা', other: 'English', otherCode: 'en' as Lang },
+  months: ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'],
+  time: { justNow: 'এইমাত্র', minutesAgo: (n: string) => `${n} মিনিট আগে`, hoursAgo: (n: string) => `${n} ঘণ্টা আগে`, daysAgo: (n: string) => `${n} দিন আগে` },
+  eventTypes: { wedding: 'বিয়ে', holud: 'গায়ে হলুদ', walima: 'বউভাত', aqiqah: 'আকিকা', khatna: 'খতনা', birthday: 'জন্মদিন', other: 'অন্যান্য' },
   nav: { home: 'অনুষ্ঠান', people: 'মানুষ', share: 'শেয়ার', settings: 'সেটিংস' },
   common: {
     save: 'সেভ করো', cancel: 'বাতিল', delete: 'মুছে ফেলো', edit: 'এডিট', close: 'বন্ধ', back: 'পিছনে',
@@ -83,7 +90,7 @@ export const bn = {
     signedInAs: 'সাইন ইন করা আছে:',
   },
   settings: {
-    title: 'সেটিংস', account: 'অ্যাকাউন্ট', signOut: 'লগ আউট', signOutTitle: 'লগ আউট করবেন?', signOutDesc: 'ফোনের কপি থেকে যাবে। আবার লগইন করলে একই খাতা পাবেন।', ledger: 'খাতা', ledgerName: 'খাতার নাম',
+    title: 'সেটিংস', language: 'ভাষা', demoMode: 'ডেমো মোড', account: 'অ্যাকাউন্ট', signOut: 'লগ আউট', signOutTitle: 'লগ আউট করবেন?', signOutDesc: 'ফোনের কপি থেকে যাবে। আবার লগইন করলে একই খাতা পাবেন।', ledger: 'খাতা', ledgerName: 'খাতার নাম',
     rename: 'নাম বদলাও', renamed: 'নাম বদলেছে', openSheet: 'Google Sheets-এ খোলো', backupNote: 'গুগল শিটটাই আপনার ব্যাকআপ। আলাদা কিছু লাগে না।',
     switchLedger: 'অন্য খাতা', exportAll: 'পুরো খাতার এক্সেল', fileId: 'ফাইল আইডি', copyFileId: 'ফাইল আইডি কপি', openJoin: 'join লিংক খোলো', mock: 'ডেমো মোডে এটা নমুনা আইডি, Google Sheet খুলবে না', ownerLabel: 'মালিক',
     rejected: (n: string | number) => `${n}টা সারি পড়া যায়নি`,
