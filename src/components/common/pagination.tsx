@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { AppIcon } from "./app-icon"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { toBanglaDigits } from "@/lib/format"
 import { cn } from "@/lib/utils"
 

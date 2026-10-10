@@ -3,7 +3,7 @@ import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { AppIcon } from "@/components/common/app-icon"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 
 // 🔐 লিংকে শুধু ফাইলের আইডি
 export const joinUrl = (fileId: string) => `${window.location.origin}/join?f=${fileId}`

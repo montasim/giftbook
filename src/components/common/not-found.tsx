@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { AppIcon } from "./app-icon"
 import { EmptyState } from "./empty-state"
 import { PublicLayout } from "./public-layout"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 
 // শেলের ভেতরে (অনুষ্ঠান/মানুষ পাওয়া যায়নি) — ছোট
 export function NotFound() {

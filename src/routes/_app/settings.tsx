@@ -20,7 +20,7 @@ import { seedData } from "@/features/ledger/seed"
 import { auth, drive, isMock } from "@/features/google"
 import { logout, resetEverything, setActiveFile } from "@/features/auth/session"
 import { reset as resetSync, setSimulate, statusOf, syncNow, useSync } from "@/features/sync/sync-engine"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { formatDateTime, toBanglaDigits } from "@/lib/format"
 
 export const Route = createFileRoute("/_app/settings")({ component: SettingsPage })

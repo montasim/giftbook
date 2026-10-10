@@ -11,7 +11,7 @@ import { PageHeader } from "@/components/common/page-header"
 import { useLedger } from "@/components/common/ledger-context"
 import { PersonFormDialog } from "@/features/people/person-form"
 import { selectPeople, totalsByPerson } from "@/features/ledger/queries"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { formatPhone, toAsciiDigits } from "@/lib/format"
 
 export const Route = createFileRoute("/_app/people/")({ component: PeoplePage })

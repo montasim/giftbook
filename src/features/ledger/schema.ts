@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { EVENT_TYPE_KEYS } from "../../config/event-types.ts"
 import { today } from "../../lib/format.ts"
-import { t } from "../../lib/i18n/bn.ts"
+import { t } from "../../lib/i18n/index.ts"
 
 const meta = {
   id: z.string().min(1),

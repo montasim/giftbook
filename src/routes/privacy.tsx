@@ -1,7 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router"
 import { PublicLayout } from "@/components/common/public-layout"
 import { Card, CardContent } from "@/components/ui/card"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 
 export const Route = createFileRoute("/privacy")({ component: PrivacyPage })
 

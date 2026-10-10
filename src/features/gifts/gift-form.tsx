@@ -11,7 +11,7 @@ import { PersonCombobox, type PersonChoice } from "@/features/people/person-comb
 import { DirectionToggle } from "./direction-toggle"
 import { selectPeople } from "@/features/ledger/queries"
 import { emptyPerson, type Direction, type Gift } from "@/features/ledger/schema"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { normalizePhone, parseAmount, toBanglaDigits } from "@/lib/format"
 
 export function GiftFormDialog({ gift, onOpenChange }: { gift: Gift | null; onOpenChange: (o: boolean) => void }) {

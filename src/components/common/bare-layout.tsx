@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 
 // login / setup / join — ব্র্যান্ড উপরে, max-w-md কার্ড, পর্দার মাঝখানে (ছোট পর্দায় উপর থেকে)
 export const BareLayout = ({ children, brand = true }: { children: ReactNode; brand?: boolean }) => (

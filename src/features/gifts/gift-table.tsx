@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { AppIcon } from "@/components/common/app-icon"
 import { Money } from "@/components/common/money"
 import { StatusBadge } from "@/components/common/status-badge"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 import { isPending, type Direction } from "@/features/ledger/schema"
 import type { GiftWithPerson } from "@/features/ledger/queries"

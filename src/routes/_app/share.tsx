@@ -12,7 +12,7 @@ import { useLedger } from "@/components/common/ledger-context"
 import { QrCard } from "@/features/sharing/qr-card"
 import { MemberList } from "@/features/sharing/member-list"
 import { drive, type Member } from "@/features/google"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 
 export const Route = createFileRoute("/_app/share")({ component: SharePage })
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

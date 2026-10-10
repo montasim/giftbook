@@ -7,7 +7,7 @@ import { useLedger } from "@/components/common/ledger-context"
 import { PersonCombobox, type PersonChoice } from "./person-combobox"
 import { selectPeople } from "@/features/ledger/queries"
 import type { Person } from "@/features/ledger/schema"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 
 export function MergePersonDialog({ open, onOpenChange, person }: { open: boolean; onOpenChange: (o: boolean) => void; person: Person }) {
   const { data, repo } = useLedger()

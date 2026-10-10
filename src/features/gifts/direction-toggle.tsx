@@ -1,6 +1,6 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { AppIcon } from "@/components/common/app-icon"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 import type { Direction } from "@/features/ledger/schema"
 

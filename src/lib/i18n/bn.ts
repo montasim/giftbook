@@ -1,5 +1,5 @@
-// সব বাংলা লেখা এক জায়গায়
-export const t = {
+// বাংলা — রেফারেন্স ডিকশনারি; en.ts একই আকারে (Dict)। কনজিউমার import করে "@/lib/i18n" থেকে।
+export const bn = {
   appName: 'উপহারের খাতা',
   tagline: 'পরিবারের উপহারের হিসাব, এক জায়গায়',
   seo: {
@@ -182,3 +182,5 @@ export const t = {
   print: { title: 'প্রিন্ট', total: 'মোট', serial: 'ক্রম', footer: 'উপহারের খাতা থেকে ছাপানো' },
   xlsx: { name: 'নাম', phone: 'ফোন', direction: 'পেলাম/দিলাম', amount: 'টাকা', item: 'জিনিস', note: 'নোট', event: 'অনুষ্ঠান', date: 'তারিখ', total: 'মোট' },
 }
+
+export type Dict = typeof bn

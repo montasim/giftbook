@@ -23,7 +23,7 @@ import { exportEventXlsx } from "@/features/export/to-xlsx"
 import { selectEvent, selectEventGifts, totals } from "@/features/ledger/queries"
 import { isPending, type Gift } from "@/features/ledger/schema"
 import { eventType } from "@/config/event-types"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { formatPartialDate, toBanglaDigits } from "@/lib/format"
 
 export const Route = createFileRoute("/_app/events/$eventId")({ component: EventPage })

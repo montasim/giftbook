@@ -1,5 +1,5 @@
 import * as XLSX from "xlsx"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { formatPartialDate } from "@/lib/format"
 import { totals, type GiftWithPerson } from "@/features/ledger/queries"
 import type { LedgerEvent } from "@/features/ledger/schema"

@@ -9,7 +9,7 @@ import { ResponsiveDialog } from "@/components/common/responsive-dialog"
 import { useLedger } from "@/components/common/ledger-context"
 import { findByPhone } from "@/features/ledger/queries"
 import { emptyPerson, personInputSchema, type Person } from "@/features/ledger/schema"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { normalizePhone } from "@/lib/format"
 
 export function PersonFormDialog({ open, onOpenChange, person }: { open: boolean; onOpenChange: (o: boolean) => void; person?: Person }) {

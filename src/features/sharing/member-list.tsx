@@ -5,7 +5,7 @@ import { AppIcon } from "@/components/common/app-icon"
 import { AvatarInitial } from "@/components/common/avatar-initial"
 import { StatusBadge } from "@/components/common/status-badge"
 import { ConfirmDialog } from "@/components/common/confirm-dialog"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import type { Member } from "@/features/google/types"
 
 export function MemberList({ members, onRemove }: { members: Member[]; onRemove: (m: Member) => void }) {

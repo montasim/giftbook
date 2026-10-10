@@ -4,7 +4,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { AppIcon } from "./app-icon"
 import { AvatarInitial } from "./avatar-initial"
 import { ConfirmDialog } from "./confirm-dialog"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { auth } from "@/features/google"
 import { logout } from "@/features/auth/session"
 import type { GoogleUser } from "@/features/google/types"

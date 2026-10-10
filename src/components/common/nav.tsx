@@ -1,7 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router"
 import { AppIcon } from "./app-icon"
 import { NAV_ITEMS } from "@/config/nav"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { cn } from "@/lib/utils"
 
 const isActive = (path: string, current: string) => current.startsWith(path)

@@ -20,7 +20,7 @@ import { PersonFormDialog } from "@/features/people/person-form"
 import { DEFAULT_HISTORY_SORT, PersonHistory, sortHistory, type HistorySort, type HistorySortKey } from "@/features/people/person-history"
 import { selectPerson, selectPersonHistory, totals } from "@/features/ledger/queries"
 import { isPending, type Gift } from "@/features/ledger/schema"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { formatPhone, toBanglaDigits } from "@/lib/format"
 
 export const Route = createFileRoute("/_app/people/$personId")({ component: PersonPage })

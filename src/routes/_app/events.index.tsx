@@ -11,7 +11,7 @@ import { useLedger } from "@/components/common/ledger-context"
 import { EventCard } from "@/features/events/event-card"
 import { EventFormDialog } from "@/features/events/event-form"
 import { selectAllTotals, selectEvents, totalsByEvent } from "@/features/ledger/queries"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { toBanglaDigits } from "@/lib/format"
 import { cn } from "@/lib/utils"
 

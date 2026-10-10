@@ -4,7 +4,7 @@ import { UserMenu } from "./user-menu"
 import { Nav } from "./nav"
 import { SyncStatus } from "./sync-status"
 import { SyncBanner } from "./sync-banner"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import type { GoogleUser, LedgerFile } from "@/features/google/types"
 
 // সব সাইজে উপরে navbar: বামে ব্র্যান্ড · মাঝখানে পাতার নাম · ডানে সিঙ্ক+ইউজার; মোবাইলে পাতার নাম নিচের tab bar-এ

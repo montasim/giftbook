@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { datePrecision, formatPartialDate, toAsciiDigits, today, type DatePrecision } from "@/lib/format"
 import { DATE_RE } from "@/features/ledger/schema"
 

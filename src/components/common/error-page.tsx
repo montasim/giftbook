@@ -2,7 +2,7 @@ import { Link, type ErrorComponentProps } from "@tanstack/react-router"
 import { Button } from "@/components/ui/button"
 import { AppIcon } from "./app-icon"
 import { PublicLayout } from "./public-layout"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { site } from "@/config/site"
 
 // রানটাইম এরর (500): TanStack-এর ডিফল্ট "Something went wrong" বদলে — বাংলায়, আবার চেষ্টা / হোম / যোগাযোগ

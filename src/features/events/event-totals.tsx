@@ -1,6 +1,6 @@
 import { Stat } from "@/components/common/stat"
 import { Money } from "@/components/common/money"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { toBanglaDigits } from "@/lib/format"
 import { cn } from "@/lib/utils"
 import type { Totals } from "@/features/ledger/queries"

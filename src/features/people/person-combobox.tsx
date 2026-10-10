@@ -2,7 +2,7 @@ import { useEffect, useImperativeHandle, useRef, useState, type Ref } from "reac
 import { Input } from "@/components/ui/input"
 import { Popover, PopoverAnchor, PopoverContent } from "@/components/ui/popover"
 import { AppIcon } from "@/components/common/app-icon"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { formatPhone, toAsciiDigits } from "@/lib/format"
 import { cn } from "@/lib/utils"
 import type { Person } from "@/features/ledger/schema"

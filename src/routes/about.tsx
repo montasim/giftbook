@@ -2,7 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router"
 import { Card, CardContent } from "@/components/ui/card"
 import { AppIcon } from "@/components/common/app-icon"
 import { PublicLayout } from "@/components/common/public-layout"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { site } from "@/config/site"
 
 export const Route = createFileRoute("/about")({ component: AboutPage })

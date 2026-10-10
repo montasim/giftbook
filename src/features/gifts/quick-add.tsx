@@ -9,7 +9,7 @@ import { PersonCombobox, type PersonChoice, type PersonComboboxHandle } from "@/
 import { DirectionToggle } from "./direction-toggle"
 import { findByPhone, selectPeople } from "@/features/ledger/queries"
 import { emptyPerson, type Direction } from "@/features/ledger/schema"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { normalizePhone, parseAmount } from "@/lib/format"
 
 let lastDirection: Direction = "received" // পরপর যোগে দিক মনে থাকে

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { AppIcon } from "./app-icon"
 import type { IconName } from "@/config/icons"
-import { t } from "@/lib/i18n/bn"
+import { t } from "@/lib/i18n"
 import { timeAgo } from "@/lib/format"
 import { cn } from "@/lib/utils"
 import { statusOf, syncNow, useSync, type SyncState, type SyncStatus as Status } from "@/features/sync/sync-engine"
