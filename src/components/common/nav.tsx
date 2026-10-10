@@ -4,7 +4,7 @@ import { NAV_ITEMS } from "@/config/nav"
 import { t } from "@/lib/i18n/bn"
 import { cn } from "@/lib/utils"
 
-const isActive = (path: string, current: string) => (path === "/" ? current === "/" || current.startsWith("/events") : current.startsWith(path))
+const isActive = (path: string, current: string) => current.startsWith(path)
 
 // top: navbar-এর পাতার নাম (sm+) · bottom: মোবাইল tab bar
 export function Nav({ variant }: { variant: "bottom" | "top" }) {

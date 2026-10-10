@@ -110,8 +110,8 @@ http://localhost:3100 → “Google দিয়ে সাইন ইন” → G
 
 ```
 src/
-├─ routes/            __root (head: মেটা + সোশ্যাল প্রিভিউ) · welcome (ল্যান্ডিং) · login · setup · join · privacy · contact · _app (guard + shell)
-│                     _app/{index, events.$eventId, people.index, people.$personId, share, settings} · events.$eventId.print
+├─ routes/            __root (head: মেটা + সোশ্যাল প্রিভিউ) · index (ল্যান্ডিং, /) · login · setup · join · privacy · contact · _app (guard + shell)
+│                     _app/{events.index (অ্যাপের হোম /events), events.$eventId, people.index, people.$personId, share, settings} · events.$eventId.print
 ├─ components/ui/     shadcn (radix-nova; আইকন Hugeicons)
 ├─ components/common/ app-shell · nav · user-menu · page-header · skeletons · pagination · responsive-dialog · confirm-dialog · field · sync-status · sync-banner · ledger-gate …
 ├─ features/

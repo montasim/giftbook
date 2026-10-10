@@ -18,7 +18,7 @@ export function ErrorPage({ error, reset }: ErrorComponentProps) {
         <div className="mt-2 flex flex-wrap justify-center gap-2">
           <Button onClick={reset}><AppIcon name="sync" />{t.errors.retry}</Button>
           <Button variant="outline" asChild>
-            <Link to="/"><AppIcon name="home" />{t.common.goHome}</Link>
+            <Link to="/events"><AppIcon name="home" />{t.common.goHome}</Link>
           </Button>
           <Button variant="outline" asChild>
             <a href={mail}>{t.contact.link}</a>

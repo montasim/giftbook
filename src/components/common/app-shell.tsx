@@ -13,7 +13,7 @@ export function AppShell({ user, file, fileId, children }: { user: GoogleUser; f
     <div className="min-h-dvh">
       <header className="sticky top-0 z-30 border-b border-stone-200 bg-white/90 backdrop-blur print:hidden">
         <div className="relative mx-auto flex h-14 max-w-3xl items-center gap-3 px-4 sm:px-6 lg:max-w-5xl lg:px-10">
-          <Link to="/" className="flex min-w-0 items-center gap-2 font-bold">
+          <Link to="/events" className="flex min-w-0 items-center gap-2 font-bold">
             <img src="/logo.svg" alt="" className="h-8 w-8 shrink-0" />
             <span className="truncate">{file?.name ?? t.appName}</span>
           </Link>

@@ -10,7 +10,7 @@ export function NotFound() {
   return (
     <EmptyState icon="search" title={t.common.notFound}>
       <Button variant="outline" asChild>
-        <Link to="/">{t.common.goHome}</Link>
+        <Link to="/events">{t.common.goHome}</Link>
       </Button>
     </EmptyState>
   )
@@ -26,7 +26,7 @@ export function NotFoundPage() {
         <p className="max-w-md text-stone-500">{t.errors.notFoundDesc}</p>
         <div className="mt-2 flex flex-wrap justify-center gap-2">
           <Button asChild>
-            <Link to="/"><AppIcon name="home" />{t.common.goHome}</Link>
+            <Link to="/events"><AppIcon name="home" />{t.common.goHome}</Link>
           </Button>
           <Button variant="outline" asChild>
             <Link to="/contact">{t.contact.link}</Link>

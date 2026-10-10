@@ -12,11 +12,6 @@
   status = 200
 
 [[redirects]]
-  from = "/welcome"
-  to = "/_shell.html"
-  status = 200
-
-[[redirects]]
   from = "/login"
   to = "/_shell.html"
   status = 200
@@ -58,6 +53,11 @@
 
 [[redirects]]
   from = "/people/*"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
+  from = "/events"
   to = "/_shell.html"
   status = 200
 

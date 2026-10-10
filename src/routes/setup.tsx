@@ -37,7 +37,7 @@ function SetupPage() {
   const [err, setErr] = useState<string | null>(null)
   const activate = (id: string) => {
     activateLedger(id)
-    void navigate({ to: "/", replace: true })
+    void navigate({ to: "/events", replace: true })
   }
   useEffect(() => {
     if (!user) return

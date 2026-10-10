@@ -109,7 +109,7 @@ function SettingsPage() {
             <CardHeader><CardTitle>{t.settings.data}</CardTitle></CardHeader>
             <CardContent className="flex flex-col gap-3">
               <Row>
-                {DEV && <Button variant="outline" onClick={async () => { await repo.bulkAdd(seedData(user.email)); toast(t.settings.seeded); void navigate({ to: "/" }) }}><AppIcon name="gift" size={16} />{t.settings.seed}</Button>}
+                {DEV && <Button variant="outline" onClick={async () => { await repo.bulkAdd(seedData(user.email)); toast(t.settings.seeded); void navigate({ to: "/events" }) }}><AppIcon name="gift" size={16} />{t.settings.seed}</Button>}
                 {DEV && <Button variant="outline" onClick={() => void navigate({ to: "/join", search: { f: fileId } })}><AppIcon name="link" size={16} />{t.settings.openJoin}</Button>}
                 {DEV && <Button variant="outline" className="text-red-600" onClick={() => setResetAll(true)}><AppIcon name="sync" size={16} />{t.settings.reset}</Button>}
                 <Button variant="outline" className="text-red-600" onClick={() => setClear(true)}><AppIcon name="trash" size={16} />{t.settings.clear}</Button>

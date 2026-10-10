@@ -11,18 +11,18 @@ import { toBanglaDigits } from "@/lib/format"
 import { useSession } from "@/features/auth/session"
 import { cn } from "@/lib/utils"
 
-export const Route = createFileRoute("/welcome")({ component: LandingPage })
+export const Route = createFileRoute("/")({ component: LandingPage })
 
-// ল্যান্ডিং: লগইন-ছাড়া /-এ এলে এখানে। অ্যাপের থিমেই (emerald/stone, Hind Siliguri, shadcn কার্ড)।
+// ল্যান্ডিং: / সবসময় এটা; অ্যাপের হোম /events। অ্যাপের থিমেই (emerald/stone, Hind Siliguri, shadcn কার্ড)।
 function LandingPage() {
   const { user } = useSession()
   const l = t.landing
-  const cta = user ? { to: "/" as const, label: l.openApp } : { to: "/login" as const, label: l.ctaPrimary }
+  const cta = user ? { to: "/events" as const, label: l.openApp } : { to: "/login" as const, label: l.ctaPrimary }
   return (
     <div className="min-h-dvh bg-stone-50 text-stone-900">
       <header className="sticky top-0 z-30 border-b border-stone-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-3xl items-center gap-4 px-4 sm:px-6 lg:max-w-5xl lg:px-10">
-          <Link to="/welcome" className="flex items-center gap-2 font-bold">
+          <Link to="/" className="flex items-center gap-2 font-bold">
             <img src="/logo.svg" alt="" className="h-8 w-8" />
             {t.appName}
           </Link>

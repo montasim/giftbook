@@ -20,7 +20,7 @@ export default defineConfig({
         description: "পরিবারের উপহারের হিসাব, এক জায়গায়",
         lang: "bn",
         display: "standalone",
-        start_url: "/",
+        start_url: "/events",
         theme_color: "#047857",
         background_color: "#fafaf9",
         icons: [

@@ -15,7 +15,7 @@ import { t } from "@/lib/i18n/bn"
 import { toBanglaDigits } from "@/lib/format"
 import { cn } from "@/lib/utils"
 
-export const Route = createFileRoute("/_app/")({ component: HomePage })
+export const Route = createFileRoute("/_app/events/")({ component: HomePage })
 
 function HomePage() {
   const { data } = useLedger()

@@ -58,7 +58,7 @@ function EventPage() {
     <div>
       <PageHeader
         title={event.name}
-        crumbs={[{ label: t.home.title, to: "/" }, { label: event.name }]}
+        crumbs={[{ label: t.home.title, to: "/events" }, { label: event.name }]}
         subtitle={[type.label, formatPartialDate(event.date), event.location].filter(Boolean).join(" · ")}
         actions={
           <>
@@ -111,7 +111,7 @@ function EventPage() {
       <QuickAddDialog open={add} onOpenChange={setAdd} eventId={event.id} />
       <EventFormDialog open={edit} onOpenChange={setEdit} event={event} />
       <GiftFormDialog gift={gift} onOpenChange={(o) => !o && setGift(null)} />
-      <ConfirmDialog open={del} onOpenChange={setDel} title={t.event.deleteTitle} description={t.event.deleteDesc} confirmText={t.common.delete} onConfirm={async () => { await repo.removeEvent(event.id); toast(t.common.deleted); void navigate({ to: "/", replace: true }) }} />
+      <ConfirmDialog open={del} onOpenChange={setDel} title={t.event.deleteTitle} description={t.event.deleteDesc} confirmText={t.common.delete} onConfirm={async () => { await repo.removeEvent(event.id); toast(t.common.deleted); void navigate({ to: "/events", replace: true }) }} />
     </div>
   )
 }

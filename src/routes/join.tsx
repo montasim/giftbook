@@ -48,7 +48,7 @@ function JoinPage() {
   const activate = () => {
     toast(t.join.success)
     activateLedger(f)
-    void navigate({ to: "/", replace: true })
+    void navigate({ to: "/events", replace: true })
   }
   const switchAccount = () => {
     logout()

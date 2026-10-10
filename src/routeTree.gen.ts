@@ -9,21 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SetupRouteImport } from './routes/setup'
-import { Route as WelcomeRouteImport } from './routes/welcome'
-import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 import { Route as AppShareRouteImport } from './routes/_app/share'
+import { Route as AppEventsIndexRouteImport } from './routes/_app/events.index'
 import { Route as AppEventsEventIdRouteImport } from './routes/_app/events.$eventId'
 import { Route as AppPeopleIndexRouteImport } from './routes/_app/people.index'
 import { Route as AppPeoplePersonIdRouteImport } from './routes/_app/people.$personId'
 import { Route as EventsEventIdPrintRouteImport } from './routes/events.$eventId.print'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
@@ -53,16 +58,6 @@ const SetupRoute = SetupRouteImport.update({
   path: '/setup',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WelcomeRoute = WelcomeRouteImport.update({
-  id: '/welcome',
-  path: '/welcome',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppIndexRoute = AppIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppRoute,
-} as any)
 const AppSettingsRoute = AppSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -71,6 +66,11 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
 const AppShareRoute = AppShareRouteImport.update({
   id: '/share',
   path: '/share',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEventsIndexRoute = AppEventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
   getParentRoute: () => AppRoute,
 } as any)
 const AppEventsEventIdRoute = AppEventsEventIdRouteImport.update({
@@ -95,50 +95,50 @@ const EventsEventIdPrintRoute = EventsEventIdPrintRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof AppIndexRoute
+  '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
-  '/welcome': typeof WelcomeRoute
   '/settings': typeof AppSettingsRoute
   '/share': typeof AppShareRoute
   '/events/$eventId': typeof AppEventsEventIdRoute
   '/people/$personId': typeof AppPeoplePersonIdRoute
   '/events/$eventId/print': typeof EventsEventIdPrintRoute
+  '/events/': typeof AppEventsIndexRoute
   '/people/': typeof AppPeopleIndexRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
-  '/welcome': typeof WelcomeRoute
   '/settings': typeof AppSettingsRoute
   '/share': typeof AppShareRoute
-  '/': typeof AppIndexRoute
   '/events/$eventId': typeof AppEventsEventIdRoute
   '/people/$personId': typeof AppPeoplePersonIdRoute
   '/events/$eventId/print': typeof EventsEventIdPrintRoute
+  '/events': typeof AppEventsIndexRoute
   '/people': typeof AppPeopleIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/contact': typeof ContactRoute
   '/join': typeof JoinRoute
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
-  '/welcome': typeof WelcomeRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/share': typeof AppShareRoute
-  '/_app/': typeof AppIndexRoute
   '/_app/events/$eventId': typeof AppEventsEventIdRoute
   '/_app/people/$personId': typeof AppPeoplePersonIdRoute
   '/events/$eventId/print': typeof EventsEventIdPrintRoute
+  '/_app/events/': typeof AppEventsIndexRoute
   '/_app/people/': typeof AppPeopleIndexRoute
 }
 export interface FileRouteTypes {
@@ -150,59 +150,66 @@ export interface FileRouteTypes {
     | '/login'
     | '/privacy'
     | '/setup'
-    | '/welcome'
     | '/settings'
     | '/share'
     | '/events/$eventId'
     | '/people/$personId'
     | '/events/$eventId/print'
+    | '/events/'
     | '/people/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/contact'
     | '/join'
     | '/login'
     | '/privacy'
     | '/setup'
-    | '/welcome'
     | '/settings'
     | '/share'
-    | '/'
     | '/events/$eventId'
     | '/people/$personId'
     | '/events/$eventId/print'
+    | '/events'
     | '/people'
   id:
     | '__root__'
+    | '/'
     | '/_app'
     | '/contact'
     | '/join'
     | '/login'
     | '/privacy'
     | '/setup'
-    | '/welcome'
     | '/_app/settings'
     | '/_app/share'
-    | '/_app/'
     | '/_app/events/$eventId'
     | '/_app/people/$personId'
     | '/events/$eventId/print'
+    | '/_app/events/'
     | '/_app/people/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   ContactRoute: typeof ContactRoute
   JoinRoute: typeof JoinRoute
   LoginRoute: typeof LoginRoute
   PrivacyRoute: typeof PrivacyRoute
   SetupRoute: typeof SetupRoute
-  WelcomeRoute: typeof WelcomeRoute
   EventsEventIdPrintRoute: typeof EventsEventIdPrintRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_app': {
       id: '/_app'
       path: ''
@@ -245,20 +252,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SetupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/welcome': {
-      id: '/welcome'
-      path: '/welcome'
-      fullPath: '/welcome'
-      preLoaderRoute: typeof WelcomeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_app/': {
-      id: '/_app/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof AppIndexRouteImport
-      parentRoute: typeof AppRoute
-    }
     '/_app/settings': {
       id: '/_app/settings'
       path: '/settings'
@@ -271,6 +264,13 @@ declare module '@tanstack/react-router' {
       path: '/share'
       fullPath: '/share'
       preLoaderRoute: typeof AppShareRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/events/': {
+      id: '/_app/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof AppEventsIndexRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/events/$eventId': {
@@ -307,31 +307,31 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppSettingsRoute: typeof AppSettingsRoute
   AppShareRoute: typeof AppShareRoute
-  AppIndexRoute: typeof AppIndexRoute
   AppEventsEventIdRoute: typeof AppEventsEventIdRoute
   AppPeoplePersonIdRoute: typeof AppPeoplePersonIdRoute
+  AppEventsIndexRoute: typeof AppEventsIndexRoute
   AppPeopleIndexRoute: typeof AppPeopleIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppSettingsRoute: AppSettingsRoute,
   AppShareRoute: AppShareRoute,
-  AppIndexRoute: AppIndexRoute,
   AppEventsEventIdRoute: AppEventsEventIdRoute,
   AppPeoplePersonIdRoute: AppPeoplePersonIdRoute,
+  AppEventsIndexRoute: AppEventsIndexRoute,
   AppPeopleIndexRoute: AppPeopleIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   ContactRoute: ContactRoute,
   JoinRoute: JoinRoute,
   LoginRoute: LoginRoute,
   PrivacyRoute: PrivacyRoute,
   SetupRoute: SetupRoute,
-  WelcomeRoute: WelcomeRoute,
   EventsEventIdPrintRoute: EventsEventIdPrintRoute,
 }
 export const routeTree = rootRouteImport

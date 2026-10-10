@@ -20,7 +20,7 @@ function LoginPage() {
   const [chooser, setChooser] = useState(false)
   const [busy, setBusy] = useState(false)
   useEffect(() => {
-    if (user) void navigate({ to: takeRedirect() ?? "/", replace: true })
+    if (user) void navigate({ to: takeRedirect() ?? "/events", replace: true })
   }, [user, navigate])
 
   // login() → useSession বদলায় → উপরের effect ফেরার পথে নেয় (redirect থাকলে সেখানে, নইলে / → guard → /setup)
@@ -54,7 +54,7 @@ function LoginPage() {
           <p className="text-xs text-stone-500">{t.login.permissionNote}</p>
           <p className="text-xs text-stone-400">{t.login.flowNote}</p>
           <p className="flex gap-3 text-xs text-stone-400">
-            <Link to="/welcome" className="underline-offset-2 hover:underline">{t.landing.link}</Link>
+            <Link to="/" className="underline-offset-2 hover:underline">{t.landing.link}</Link>
             <Link to="/privacy" className="underline-offset-2 hover:underline">{t.privacy.link}</Link>
             <Link to="/contact" className="underline-offset-2 hover:underline">{t.contact.link}</Link>
           </p>
