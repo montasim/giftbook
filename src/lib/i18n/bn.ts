@@ -102,7 +102,7 @@ export const t = {
     pendingWrites: (n: string | number) => `${n}টা লেখা শিটে যাওয়া বাকি`, pausedBanner: 'ফোনের কপি রাখা আছে, কিন্তু শিটে আর কিছু যাবে না।',
   },
   landing: {
-    link: 'অ্যাপ সম্পর্কে', nav: { features: 'ফিচার', how: 'কীভাবে', faq: 'প্রশ্নোত্তর' }, login: 'লগইন', openApp: 'অ্যাপ খুলুন',
+    nav: { features: 'ফিচার', how: 'কীভাবে', faq: 'প্রশ্নোত্তর' }, login: 'লগইন', openApp: 'অ্যাপ খুলুন',
     heroTitle: 'পরিবারের উপহারের হিসাব, এক জায়গায়',
     heroSub: 'বিয়ে, আকিকা, জন্মদিন — কে কী দিল, কাকে কী দিলাম, খাম খোলা বাকি কটা। কাগজের খাতার বদলে ফোনে, আর খাতাটা থাকে আপনার নিজের Google Sheet-এ।',
     ctaPrimary: 'Google দিয়ে শুরু করুন', ctaSecondary: 'কীভাবে কাজ করে',
@@ -147,6 +147,16 @@ export const t = {
     bottomTitle: 'পরের অনুষ্ঠানের আগেই খাতাটা খুলে ফেলুন', bottomSub: 'এক মিনিটে সাইন ইন, বাকিটা অনুষ্ঠানের দিন।',
     footerMade: 'বাংলাদেশের পরিবারের জন্য বানানো',
   },
+  about: {
+    title: 'অ্যাপ সম্পর্কে', link: 'অ্যাপ সম্পর্কে', lead: 'উপহারের খাতা একটা ছোট, বিনামূল্যের অ্যাপ — বিয়ে, আকিকা, জন্মদিনে কে কী দিল, কাকে কী দিলাম, সেই হিসাব এক জায়গায় রাখার জন্য।',
+    sections: [
+      { h: 'কেন বানানো', p: 'আমাদের পরিবারে উপহারের হিসাব থাকত কাগজের খাতায় — হারায়, ছেঁড়ে, খুঁজে পাওয়া যায় না। পরের অনুষ্ঠানে “ওরা কী দিয়েছিল?” জানতে পুরোনো খাতা ঘাঁটতে হয়। এই অ্যাপ সেই খাতাটাই, ফোনে।' },
+      { h: 'কীভাবে কাজ করে', p: 'খাতা থাকে আপনার নিজের Google Drive-এর একটা Google Sheet-এ। অ্যাপের কোনো সার্ভার বা ডাটাবেস নেই; আপনার ডাটা কখনো আমাদের কাছে আসে না। ফোনে একটা কপি থাকে, তাই অফলাইনেও চলে; নেট এলে শিটে সিঙ্ক হয়।' },
+      { h: 'পরিবারের সাথে', p: 'খাতার মালিক QR বা লিংক দিয়ে পরিবারের সদস্যকে যুক্ত করতে পারেন — সবাই একই খাতায় লেখে, Google Drive-এর শেয়ারিং দিয়ে।' },
+      { h: 'খরচ', p: 'বিনামূল্যে। বিজ্ঞাপন, অ্যানালিটিক্স বা ট্র্যাকার নেই।' },
+    ],
+    developerTitle: 'ডেভেলপার', developerName: 'মন্তাসিম', developerNote: 'কোনো প্রশ্ন, সমস্যা বা পরামর্শ থাকলে সরাসরি ইমেইল করুন।',
+  },
   contact: {
     title: 'যোগাযোগ', link: 'যোগাযোগ', lead: 'কোনো সমস্যা, ভুল হিসাব বা নতুন কিছু চাইলে সরাসরি ডেভেলপারকে ইমেইল করুন।', emailLabel: 'ডেভেলপারের ইমেইল', mail: 'ইমেইল লিখুন',
     includeTitle: 'ইমেইলে যা থাকলে দ্রুত সমাধান হয়', include: ['কোন পাতায়, কী করতে গিয়ে সমস্যা হলো', 'কী আশা করেছিলেন, কী দেখলেন', 'ফোন/ব্রাউজারের নাম', 'স্ক্রিনশট থাকলে'],
@@ -165,9 +175,9 @@ export const t = {
       { h: 'ফোনে কী থাকে', p: 'দ্রুত ও অফলাইনে চালানোর জন্য খাতার একটি কপি আপনার ব্রাউজারে (IndexedDB) থাকে, সাথে সাইন-ইন সেশন ও Google-এর স্বল্পমেয়াদি access token। লগ আউট বা সেটিংস থেকে “ফোনের কপি মুছে ফেলো” দিলে এগুলো মুছে যায়।' },
       { h: 'শেয়ার', p: 'খাতার মালিক QR বা লিংক দিয়ে পরিবারের সদস্যকে যুক্ত করলে Google Drive-এর শেয়ারিং দিয়েই শিটে অনুমতি যোগ হয়। কে কী দেখবে, তা Google Drive-এর শেয়ার তালিকাতেই নিয়ন্ত্রিত।' },
       { h: 'ট্র্যাকিং ও বিজ্ঞাপন', p: 'কোনো অ্যানালিটিক্স, বিজ্ঞাপন বা থার্ড-পার্টি ট্র্যাকার নেই। Google ছাড়া অন্য কোনো সেবায় ডাটা পাঠানো হয় না।' },
-      { h: 'যোগাযোগ', p: 'প্রশ্ন থাকলে: montasim.portfolio@gmail.com' },
+      { h: 'যোগাযোগ', p: 'প্রশ্ন থাকলে: montasimmamun@gmail.com' },
     ],
-    english: 'Upohar Khata (উপহারের খাতা) stores your gift ledger in a Google Sheet inside your own Google Drive. The app has no server or database of its own and never receives or retains your data. It requests only the drive.file scope, so it can access files it created or you explicitly picked, nothing else. A local copy of the ledger, your session and a short-lived Google access token are kept in your browser for offline use and are removed on sign-out. Sharing uses Google Drive permissions. There are no analytics, ads or third-party trackers. Contact: montasim.portfolio@gmail.com.',
+    english: 'Upohar Khata (উপহারের খাতা) stores your gift ledger in a Google Sheet inside your own Google Drive. The app has no server or database of its own and never receives or retains your data. It requests only the drive.file scope, so it can access files it created or you explicitly picked, nothing else. A local copy of the ledger, your session and a short-lived Google access token are kept in your browser for offline use and are removed on sign-out. Sharing uses Google Drive permissions. There are no analytics, ads or third-party trackers. Contact: montasimmamun@gmail.com.',
   },
   print: { title: 'প্রিন্ট', total: 'মোট', serial: 'ক্রম', footer: 'উপহারের খাতা থেকে ছাপানো' },
   xlsx: { name: 'নাম', phone: 'ফোন', direction: 'পেলাম/দিলাম', amount: 'টাকা', item: 'জিনিস', note: 'নোট', event: 'অনুষ্ঠান', date: 'তারিখ', total: 'মোট' },

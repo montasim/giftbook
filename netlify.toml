@@ -27,6 +27,11 @@
   status = 200
 
 [[redirects]]
+  from = "/about"
+  to = "/_shell.html"
+  status = 200
+
+[[redirects]]
   from = "/privacy"
   to = "/_shell.html"
   status = 200

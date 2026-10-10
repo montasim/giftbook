@@ -152,6 +152,7 @@ function LandingPage() {
         <div className="mx-auto flex max-w-3xl flex-col gap-3 px-4 py-6 text-sm text-stone-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:max-w-5xl lg:px-10">
           <span className="flex items-center gap-2"><img src="/logo.svg" alt="" className="h-6 w-6" />{t.appName} · {l.footerMade}</span>
           <nav className="flex gap-4">
+            <Link to="/about" className="hover:underline">{t.about.link}</Link>
             <Link to="/privacy" className="hover:underline">{t.privacy.link}</Link>
             <Link to="/contact" className="hover:underline">{t.contact.link}</Link>
           </nav>
