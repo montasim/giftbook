@@ -44,6 +44,7 @@ export const Route = createRootRoute({
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "stylesheet", href: appCss },
     ],
     scripts: isMock
@@ -60,6 +61,10 @@ export const Route = createRootRoute({
 })
 
 function App() {
+  // PWA: sw.js বিল্ডে workbox-build বানায় (vite.config.ts); dev-এ নেই, তাই শুধু PROD-এ
+  useEffect(() => {
+    if (import.meta.env.PROD && "serviceWorker" in navigator) void navigator.serviceWorker.register("/sw.js")
+  }, [])
   // নতুন ডিপ্লয়ের পর পুরোনো ট্যাবে lazy chunk-এর নাম বদলে যায় → "Failed to load module script"; একবার reload করলেই ঠিক
   useEffect(() => {
     const reload = () => window.location.reload()

@@ -125,7 +125,7 @@
 | `/events/$id/print`, `window.print()`, nav লুকানো | ✅ `print:hidden` · 🟡 আসল প্রিন্ট আউটপুট দেখিনি |
 | ব্যাকআপ = শিট, "Sheets-এ খোলো" | 🟡 লিংক মক আইডি → খুলবে না |
 
-## §১০ PWA (ফেজ ৮) — ❌ manifest, service worker, offline shell কিছুই নেই (প্ল্যানমতো পরের ফেজ)
+## §১০ PWA (ফেজ ৮) — ✅ হয়েছে (২০২৬-১০-১০): `public/manifest.webmanifest`, `workbox-build` দিয়ে `sw.js` (vite.config.ts `buildApp` post hook), `_shell.html` navigateFallback, রেজিস্টার `__root.tsx`-এ। `vite-plugin-pwa` বাদ — TanStack Start-এর environment build-এ sw.js বানায় না (TanStack/router#4988)।
 
 ## §১১ টেস্ট (ফেজ ৯) — ❌ `merge/rows/format` টেস্ট নেই (merge/rows মডিউলই নেই)
 
@@ -156,7 +156,7 @@
 1. **সিঙ্ক ইঞ্জিনের মূল:** `rows.ts`, `merge.ts`, Sheets batchGet/batchUpdate/append, হেডার যাচাই — ফেজ ৫।
 2. **আসল গুগল:** GIS টোকেন, `gfetch` (backoff), Drive files/permissions, Picker, appProperties — ফেজ ৪/৬।
 3. **Dexie + Zod:** localStorage → Dexie; validator → Zod স্কিমা (কলাম তালিকা স্কিমা থেকেই)।
-4. **PWA/offline shell** — ফেজ ৮।
+4. ~~**PWA/offline shell** — ফেজ ৮।~~ হয়েছে (§১০)।
 5. **টেস্ট** — merge/rows/format।
 6. **ESLint forbid-elements** — এখন শুধু নিয়ম, যন্ত্র নেই।
 7. ছোট: debounce ৩ সে; `formatTaka` Intl কি না ঠিক করা; share/setup/join routes সরাসরি drive ডাকে — feature হুকে নেওয়া; xlsx/প্রিন্ট আউটপুট হাতে যাচাই।

@@ -452,7 +452,7 @@ Spinner "খাতা খোলার চেষ্টা হচ্ছে…"
 ---
 
 ## ১০. ফেজ ৮ — PWA (v1 অপরিবর্তিত)
-`vite-plugin-pwa` generateSW: manifest {name "উপহারের খাতা", lang bn, display standalone, theme `#047857`}, precache, গুগল স্ক্রিপ্ট `StaleWhileRevalidate`। না চললে `public/sw.js` cache-first। হোস্টিং SPA rewrite। **মাপকাঠি:** এয়ারপ্লেন মোডে খোলে, ১০টা উপহার, নেট এলে শিটে।
+`vite-plugin-pwa` generateSW: manifest {name "উপহারের খাতা", lang bn, display standalone, theme `#047857`}, precache, গুগল স্ক্রিপ্ট `StaleWhileRevalidate`। না চললে `public/sw.js` cache-first। হোস্টিং SPA rewrite। **বাস্তবে (২০২৬-১০-১০):** `vite-plugin-pwa` TanStack Start-এর environment build-এ `sw.js` বানায় না (TanStack/router#4988) → `workbox-build` সরাসরি, `vite.config.ts`-এর `buildApp` post hook-এ (prerender-এর পরে, যাতে `_shell.html` precache-এ ঢোকে); manifest স্ট্যাটিক `public/manifest.webmanifest` (start_url `/events`); রেজিস্টার `__root.tsx`। **মাপকাঠি:** এয়ারপ্লেন মোডে খোলে, ১০টা উপহার, নেট এলে শিটে।
 
 ## ১১. ফেজ ৯ — টেস্ট
 `format.test.ts` (২০০০→2000; +880; "2018-03"→"মার্চ ২০১৮"; formatTaka লাখ) · `rows.test.ts` (রাউন্ডট্রিপ; ''→null; হেডার: কম কলাম ফেল, বাড়তি কলাম পাস) · `sync.test.ts` (proto `test/sync.test.js` হুবহু: rows ৩, merge ১, cycle ৫) · `queries.test.ts` (totals, pending, history sort) · `repo.test.ts` (mergePeople ফিল্ড কপি)। UI: §১২ হাতে।
