@@ -26,11 +26,15 @@ function PrivacyPage() {
               </section>
             ))}
           </div>
-          <hr className="border-stone-200" />
-          <section className="flex flex-col gap-1.5 text-stone-500">
-            <h2 className="text-lg font-semibold text-stone-700">Privacy Policy (English summary)</h2>
-            <p>{p.english}</p>
-          </section>
+          {p.english && (
+            <>
+              <hr className="border-stone-200" />
+              <section className="flex flex-col gap-1.5 text-stone-500">
+                <h2 className="text-lg font-semibold text-stone-700">Privacy Policy (English summary)</h2>
+                <p>{p.english}</p>
+              </section>
+            </>
+          )}
           <Link to="/login" className="w-fit font-medium text-emerald-700 hover:underline">{t.common.back}</Link>
         </CardContent>
       </Card>

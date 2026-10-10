@@ -115,7 +115,7 @@ function SettingsPage() {
                 <Button variant="outline" className="text-red-600" onClick={() => setClear(true)}><AppIcon name="trash" size={16} />{t.settings.clear}</Button>
               </Row>
               <Separator />
-              <p className="text-xs text-stone-400">v1.0 · {isMock ? "ডেমো মোড" : "Google Sheets"}</p>
+              <p className="text-xs text-stone-400">v1.0 · {isMock ? t.settings.demoMode : "Google Sheets"}</p>
             </CardContent>
           </Card>
         </div>

@@ -1,14 +1,15 @@
 import type { IconName } from "./icons.ts"
+import { t } from "../lib/i18n/index.ts"
 
-// ধরন যোগ/বদল শুধু এখানে
+// ধরন যোগ/বদল শুধু এখানে; লেবেল i18n-এ (t.eventTypes)
 export const EVENT_TYPES = {
-  wedding: { label: "বিয়ে", icon: "wedding" },
-  holud: { label: "গায়ে হলুদ", icon: "holud" },
-  walima: { label: "বউভাত", icon: "walima" },
-  aqiqah: { label: "আকিকা", icon: "baby" },
-  khatna: { label: "খতনা", icon: "star" },
-  birthday: { label: "জন্মদিন", icon: "cake" },
-  other: { label: "অন্যান্য", icon: "other" },
+  wedding: { label: t.eventTypes.wedding, icon: "wedding" },
+  holud: { label: t.eventTypes.holud, icon: "holud" },
+  walima: { label: t.eventTypes.walima, icon: "walima" },
+  aqiqah: { label: t.eventTypes.aqiqah, icon: "baby" },
+  khatna: { label: t.eventTypes.khatna, icon: "star" },
+  birthday: { label: t.eventTypes.birthday, icon: "cake" },
+  other: { label: t.eventTypes.other, icon: "other" },
 } as const satisfies Record<string, { label: string; icon: IconName }>
 
 export type EventType = keyof typeof EVENT_TYPES

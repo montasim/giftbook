@@ -5,6 +5,7 @@ import { NotFoundPage } from "@/components/common/not-found"
 import { ErrorPage } from "@/components/common/error-page"
 import { isMock } from "@/features/google"
 import { site } from "@/config/site"
+import { lang } from "@/lib/i18n"
 import appCss from "../styles.css?url"
 
 export const Route = createRootRoute({
@@ -63,6 +64,7 @@ export const Route = createRootRoute({
 function App() {
   // PWA: sw.js বিল্ডে workbox-build বানায় (vite.config.ts); dev-এ নেই, তাই শুধু PROD-এ
   useEffect(() => {
+    document.documentElement.lang = lang // prerendered shell বাংলা; ক্লায়েন্টে বাছা ভাষা
     if (import.meta.env.PROD && "serviceWorker" in navigator) void navigator.serviceWorker.register("/sw.js")
   }, [])
   // নতুন ডিপ্লয়ের পর পুরোনো ট্যাবে lazy chunk-এর নাম বদলে যায় → "Failed to load module script"; একবার reload করলেই ঠিক
@@ -90,7 +92,7 @@ function App() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="bn" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
