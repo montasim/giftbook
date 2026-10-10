@@ -58,7 +58,7 @@ function LoginPage() {
             <Link to="/about" className="underline-offset-2 hover:underline">{t.about.link}</Link>
             <Link to="/privacy" className="underline-offset-2 hover:underline">{t.privacy.link}</Link>
             <Link to="/contact" className="underline-offset-2 hover:underline">{t.contact.link}</Link>
-            <LangSwitch className="underline-offset-2" />
+            <LangSwitch />
           </p>
         </CardContent>
       </Card>

@@ -22,20 +22,23 @@ function LandingPage() {
   return (
     <div className="min-h-dvh bg-stone-50 text-stone-900">
       <header className="sticky top-0 z-30 border-b border-stone-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex h-14 max-w-3xl items-center gap-4 px-4 sm:px-6 lg:max-w-5xl lg:px-10">
+        <div className="relative mx-auto flex h-14 max-w-3xl items-center justify-between gap-4 px-4 sm:px-6 lg:max-w-5xl lg:px-10">
           <Link to="/" className="flex items-center gap-2 font-bold">
             <img src="/logo.svg" alt="" className="h-8 w-8" />
             {t.appName}
           </Link>
-          <nav className="ml-auto hidden items-center gap-5 text-sm text-stone-600 sm:flex">
+          {/* একদম মাঝখানে — ব্র্যান্ড/ডান পাশের প্রস্থে সরে না */}
+          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 text-sm text-stone-600 sm:flex">
             <a href="#features" className="hover:text-stone-900">{l.nav.features}</a>
             <a href="#how" className="hover:text-stone-900">{l.nav.how}</a>
             <a href="#faq" className="hover:text-stone-900">{l.nav.faq}</a>
           </nav>
-          <LangSwitch className="ml-auto text-sm text-stone-600 hover:text-stone-900 sm:ml-0" />
-          <Button asChild size="sm">
-            <Link to={cta.to}>{user ? l.openApp : l.login}</Link>
-          </Button>
+          <div className="flex items-center gap-4">
+            <LangSwitch className="text-sm" />
+            <Button asChild size="sm">
+              <Link to={cta.to}>{user ? l.openApp : l.login}</Link>
+            </Button>
+          </div>
         </div>
       </header>
 
