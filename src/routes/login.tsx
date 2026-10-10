@@ -54,6 +54,7 @@ function LoginPage() {
           <p className="text-xs text-stone-500">{t.login.permissionNote}</p>
           <p className="text-xs text-stone-400">{t.login.flowNote}</p>
           <p className="flex gap-3 text-xs text-stone-400">
+            <Link to="/welcome" className="underline-offset-2 hover:underline">{t.landing.link}</Link>
             <Link to="/privacy" className="underline-offset-2 hover:underline">{t.privacy.link}</Link>
             <Link to="/contact" className="underline-offset-2 hover:underline">{t.contact.link}</Link>
           </p>

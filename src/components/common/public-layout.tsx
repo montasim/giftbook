@@ -15,6 +15,7 @@ export const PublicLayout = ({ children }: { children: ReactNode }) => (
     </header>
     <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6 sm:px-6 lg:max-w-5xl lg:px-10 lg:py-8">{children}</main>
     <footer className="mx-auto flex w-full max-w-3xl gap-4 px-4 py-6 text-xs text-stone-400 sm:px-6 lg:max-w-5xl lg:px-10">
+      <Link to="/welcome" className="hover:underline">{t.landing.link}</Link>
       <Link to="/privacy" className="hover:underline">{t.privacy.link}</Link>
       <Link to="/contact" className="hover:underline">{t.contact.link}</Link>
     </footer>

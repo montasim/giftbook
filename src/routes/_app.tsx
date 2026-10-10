@@ -8,6 +8,7 @@ export const Route = createFileRoute("/_app")({
   beforeLoad: ({ location }) => {
     const s = getSession()
     if (!s.user) {
+      if (location.pathname === "/") throw redirect({ to: "/welcome" }) // লগইন-ছাড়া হোম = ল্যান্ডিং
       setRedirect(location.href)
       throw redirect({ to: "/login" })
     }

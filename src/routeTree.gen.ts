@@ -15,6 +15,7 @@ import { Route as JoinRouteImport } from './routes/join'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SetupRouteImport } from './routes/setup'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 import { Route as AppShareRouteImport } from './routes/_app/share'
@@ -50,6 +51,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const SetupRoute = SetupRouteImport.update({
   id: '/setup',
   path: '/setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
+  '/welcome': typeof WelcomeRoute
   '/settings': typeof AppSettingsRoute
   '/share': typeof AppShareRoute
   '/events/$eventId': typeof AppEventsEventIdRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
+  '/welcome': typeof WelcomeRoute
   '/settings': typeof AppSettingsRoute
   '/share': typeof AppShareRoute
   '/': typeof AppIndexRoute
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
+  '/welcome': typeof WelcomeRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/share': typeof AppShareRoute
   '/_app/': typeof AppIndexRoute
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/privacy'
     | '/setup'
+    | '/welcome'
     | '/settings'
     | '/share'
     | '/events/$eventId'
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/privacy'
     | '/setup'
+    | '/welcome'
     | '/settings'
     | '/share'
     | '/'
@@ -169,6 +180,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/privacy'
     | '/setup'
+    | '/welcome'
     | '/_app/settings'
     | '/_app/share'
     | '/_app/'
@@ -185,6 +197,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PrivacyRoute: typeof PrivacyRoute
   SetupRoute: typeof SetupRoute
+  WelcomeRoute: typeof WelcomeRoute
   EventsEventIdPrintRoute: typeof EventsEventIdPrintRoute
 }
 
@@ -230,6 +243,13 @@ declare module '@tanstack/react-router' {
       path: '/setup'
       fullPath: '/setup'
       preLoaderRoute: typeof SetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app/': {
@@ -311,6 +331,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PrivacyRoute: PrivacyRoute,
   SetupRoute: SetupRoute,
+  WelcomeRoute: WelcomeRoute,
   EventsEventIdPrintRoute: EventsEventIdPrintRoute,
 }
 export const routeTree = rootRouteImport
