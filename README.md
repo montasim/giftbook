@@ -21,6 +21,7 @@
 - **শেয়ার** — মালিক QR বা লিংক দেয় (`/join?f=<fileId>`), শিটে Drive permission যোগ করে; সদস্য তালিকা ও সরানো। যে পেল, সে লিংক খুললে খাতাটা তার অ্যাপে যুক্ত হয় (সরাসরি না মিললে Google Picker দিয়ে একবার বেছে নিতে হয়)।
 - **এক্সেল ও প্রিন্ট** — এক অনুষ্ঠানের বা পুরো খাতার `.xlsx`; অনুষ্ঠানের প্রিন্ট-পাতা (`/events/<id>/print`)।
 - **PWA** — হোম স্ক্রিনে ইনস্টল, অফলাইনে খোলে, ফোনের কপি Dexie (IndexedDB)-তে।
+- **দুই ভাষা** — বাংলা ও English। প্রথমবার ব্রাউজারের ভাষা দেখে (bn → বাংলা, নইলে English), তারপর ইউজারের পছন্দ `localStorage`-এ (`uk-lang`)। সুইচ: ল্যান্ডিং হেডার, লগইন/পাবলিক ফুটার, সেটিংস। English-এ ASCII অঙ্ক ও English মাস, টাকা `৳` + লাখ গ্রুপিং দুই ভাষাতেই। শিটের কলাম হেডার schema key — ভাষা-নিরপেক্ষ।
 - **তিন লেআউট** — মোবাইলে নিচে ট্যাব + FAB, ট্যাবলেট/ডেস্কটপে উপরে কেন্দ্রীয় মেনু; প্রতিটি পাতার নিজস্ব স্কেলেটন লোডার।
 
 ## কীভাবে কাজ করে
@@ -121,14 +122,14 @@ src/
 │  ├─ sync/           rows · merge · sync-cycle · dexie-adapter · sync-engine
 │  ├─ events/ gifts/ people/ sharing/ export/
 ├─ config/            env (Zod) · site (মেটাডাটা) · icons · event-types · nav
-├─ lib/               i18n/bn (সব লেখা) · format (টাকা, তারিখ, বাংলা অঙ্ক, ফোন) · focus · utils
+├─ lib/               i18n/ (bn.ts · en.ts · index.ts: ভাষা বাছাই + `t`) · format (টাকা, তারিখ, ভাষামতো অঙ্ক, ফোন, collation) · focus · utils
 └─ test/              sync.test.ts
 brand/                og.html (সোশ্যাল প্রিভিউ টেমপ্লেট) · render.sh
 public/               logo.svg · favicon.svg · favicon.ico · favicon-32.png · icon-192/512.png · apple-touch-icon.png · og-v2.png
 docs/                 PLAN.md (v2, এই অ্যাপের স্পেক) · PLAN-v1.md · QA-REPORT.md · GAP-ANALYSIS.md · PROTOTYPE-README.md
 ```
 
-নিয়ম: লেখা শুধু `repo` দিয়ে (সে `updatedAt`/`updatedBy` বসায়), পড়া `queries` + hooks; সব লেখা `bn.ts`-এ, আইকন `icons.ts`-এ, ফরম্যাট `format.ts`-এ; ফর্ম `noValidate`, এরর বাংলায় ফিল্ডের নিচে; `components/ui` হাতে বদলানো নয়।
+নিয়ম: লেখা শুধু `repo` দিয়ে (সে `updatedAt`/`updatedBy` বসায়), পড়া `queries` + hooks; সব লেখা `i18n/bn.ts` **এবং** `i18n/en.ts`-এ (একই আকার — `en: Dict`; `src/test/i18n.test.ts` key/টাইপ parity আর en-এ বাংলা অক্ষর নেই তা পাহারা দেয়; সংখ্যা `digits()` দিয়ে, কখনো হার্ডকোড নয়), আইকন `icons.ts`-এ, ফরম্যাট `format.ts`-এ; ফর্ম `noValidate`, এরর বাংলায় ফিল্ডের নিচে; `components/ui` হাতে বদলানো নয়।
 
 ## ব্র্যান্ড ও সোশ্যাল প্রিভিউ
 

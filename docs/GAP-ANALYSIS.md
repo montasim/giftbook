@@ -127,6 +127,8 @@
 
 ## §১০ PWA (ফেজ ৮) — ✅ হয়েছে (২০২৬-১০-১০): `public/manifest.webmanifest`, `workbox-build` দিয়ে `sw.js` (vite.config.ts `buildApp` post hook), `_shell.html` navigateFallback, রেজিস্টার `__root.tsx`-এ। `vite-plugin-pwa` বাদ — TanStack Start-এর environment build-এ sw.js বানায় না (TanStack/router#4988)।
 
+## i18n — ✅ বাংলা + English (২০২৬-১০-১০): `src/lib/i18n/{bn,en,index,lang}.ts`, সুইচ `LangSwitch`, প্ল্যান `docs/PLAN-i18n.md`
+
 ## §১১ টেস্ট (ফেজ ৯) — ❌ `merge/rows/format` টেস্ট নেই (merge/rows মডিউলই নেই)
 
 ## §১২ দুই-অ্যাকাউন্ট চেকলিস্ট (১৩টা)

@@ -1,5 +1,7 @@
 # i18n (বাংলা + English) Implementation Plan
 
+> **স্ট্যাটাস:** ✅ সব টাস্ক সম্পন্ন (২০২৬-১০-১০)। বিচ্যুতি: `lang.otherCode` টাইপ `Lang` (as const নয়); `LangSwitch`-এ `aria-label`-এর বদলে `title` (নইলে দৃশ্যমান "বাংলা"/"English" accessible name হারায়); `settings.language` এক ভাষায় (bn 'ভাষা', en 'Language'); `format.ts`/`event-types.ts` node-test-এর জন্য relative `.ts` import।
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** পুরো অ্যাপ (প্রতিটা পেজ, কম্পোনেন্ট, ফরম্যাটার, এক্সপোর্ট, প্রিন্ট) বাংলা ও ইংরেজি দুই ভাষায় চলবে; ইউজার সেটিং/হেডার থেকে ভাষা বদলাতে পারবে, পছন্দ localStorage-এ থাকবে।
@@ -47,7 +49,7 @@
 **Interfaces:**
 - Produces: `type Lang = "bn" | "en"`, `LANGS: readonly Lang[]`, `pickLang(stored: string | null, navLang: string | undefined): Lang`, `getLang(): Lang`, `setLang(l: Lang): void`, `LANG_KEY = "uk-lang"`.
 
-- [ ] **Step 1: failing test**
+- [x] **Step 1: failing test**
 
 ```ts
 // src/test/i18n.test.ts
@@ -66,9 +68,9 @@ test("pickLang: stored জেতে, নইলে navigator, নইলে en", (
 })
 ```
 
-- [ ] **Step 2: run, expect FAIL** — `pnpm test` → `Cannot find module '../lib/i18n/lang.ts'`
+- [x] **Step 2: run, expect FAIL** — `pnpm test` → `Cannot find module '../lib/i18n/lang.ts'`
 
-- [ ] **Step 3: implement**
+- [x] **Step 3: implement**
 
 ```ts
 // src/lib/i18n/lang.ts
@@ -95,8 +97,8 @@ export function setLang(l: Lang) {
 }
 ```
 
-- [ ] **Step 4: run, expect PASS** — `pnpm test`
-- [ ] **Step 5: commit** — `feat(i18n): language picker (stored → navigator → en)`
+- [x] **Step 4: run, expect PASS** — `pnpm test`
+- [x] **Step 5: commit** — `feat(i18n): language picker (stored → navigator → en)`
 
 ---
 
@@ -110,7 +112,7 @@ export function setLang(l: Lang) {
 **Interfaces:**
 - Produces: `export const bn`, `export type Dict = typeof bn` (bn.ts); `export const lang: Lang`, `export const dicts: Record<Lang, Dict>`, `export const dict = (l: Lang) => Dict`, `export const t: Dict` (index.ts).
 
-- [ ] **Step 1: bn.ts export বদলাও**
+- [x] **Step 1: bn.ts export বদলাও**
 
 ```ts
 // src/lib/i18n/bn.ts (লাইন ১-৩ এর বদলে)
@@ -125,7 +127,7 @@ export const bn = {
 export type Dict = typeof bn
 ```
 
-- [ ] **Step 2: সাময়িক en.ts + index.ts**
+- [x] **Step 2: সাময়িক en.ts + index.ts**
 
 ```ts
 // src/lib/i18n/en.ts (Task 3-এ পুরো অনুবাদে বদলাবে)
@@ -147,15 +149,15 @@ export const lang: Lang = getLang()
 export const t: Dict = dict(lang)
 ```
 
-- [ ] **Step 3: import মাইগ্রেশন**
+- [x] **Step 3: import মাইগ্রেশন**
 
 ```bash
 grep -rl 'from "@/lib/i18n/bn"' src | xargs sed -i 's#from "@/lib/i18n/bn"#from "@/lib/i18n"#'
 grep -rn 'i18n/bn"' src   # expected: no output
 ```
 
-- [ ] **Step 4: verify** — `pnpm typecheck && pnpm lint && pnpm test` সবুজ; `pnpm build` সবুজ (`[sw] … precached`)।
-- [ ] **Step 5: commit** — `refactor(i18n): Dict type, i18n index, import path`
+- [x] **Step 4: verify** — `pnpm typecheck && pnpm lint && pnpm test` সবুজ; `pnpm build` সবুজ (`[sw] … precached`)।
+- [x] **Step 5: commit** — `refactor(i18n): Dict type, i18n index, import path`
 
 ---
 
@@ -174,7 +176,7 @@ grep -rn 'i18n/bn"' src   # expected: no output
   - `seo.features: string[]` (JSON-LD featureList)
   - (bn.ts-এ ইতিমধ্যে আছে, en-এ লাগবে) `about.*` — /about পাতা (title, link, lead, sections[4], developerTitle, developerName, developerNote)
 
-- [ ] **Step 1: failing tests**
+- [x] **Step 1: failing tests**
 
 ```ts
 // src/test/i18n.test.ts-এ যোগ
@@ -219,9 +221,9 @@ test("i18n: নতুন key দুই ভাষায়", () => {
 })
 ```
 
-- [ ] **Step 2: run, expect FAIL** — `bn.months` undefined / `leaves` mismatch।
+- [x] **Step 2: run, expect FAIL** — `bn.months` undefined / `leaves` mismatch।
 
-- [ ] **Step 3: bn.ts-এ নতুন key**
+- [x] **Step 3: bn.ts-এ নতুন key**
 
 ```ts
 // bn.ts: যথাস্থানে যোগ
@@ -235,7 +237,7 @@ test("i18n: নতুন key দুই ভাষায়", () => {
     features: ['অনুষ্ঠান ও উপহারের হিসাব', 'Google Sheet-এ ডাটা', 'অফলাইনেও চলে', 'QR দিয়ে পরিবারের সাথে শেয়ার', 'এক্সেল ও প্রিন্ট'],
 ```
 
-- [ ] **Step 4: en.ts পুরো লেখো**
+- [x] **Step 4: en.ts পুরো লেখো**
 
 `en.ts` = `bn.ts`-এর হুবহু কাঠামো, প্রতিটা string ইংরেজি। এটা প্ল্যানে লিটারালি না দেওয়ার কারণ আকার (~৩২ KB); parity + no-Bangla টেস্টই সম্পূর্ণতার গেট। নিয়ম:
 
@@ -251,8 +253,8 @@ test("i18n: নতুন key দুই ভাষায়", () => {
 - `landing.*`: হিরো, ফিচার, how-to, FAQ — পূর্ণ অনুবাদ; `demoEvent`/`demoRows` ডেমো কার্ডের নাম ইংরেজি (যেমন `Sakib's wedding`, `Rahim mama`)।
 - `xlsx.*`/`print.*`: কলাম হেডার ইংরেজি (`Name, Phone, Received/Given, Amount, Item, Note, Event, Date, Total`)।
 
-- [ ] **Step 5: run, expect PASS** — `pnpm test`; `pnpm typecheck`।
-- [ ] **Step 6: commit** — `feat(i18n): English dictionary`
+- [x] **Step 5: run, expect PASS** — `pnpm test`; `pnpm typecheck`।
+- [x] **Step 6: commit** — `feat(i18n): English dictionary`
 
 ---
 
@@ -268,7 +270,7 @@ test("i18n: নতুন key দুই ভাষায়", () => {
 **Interfaces:**
 - Produces: `digits(s, l = lang): string`, `months(l = lang): string[]`, `formatTaka(n, l = lang)`, `formatPartialDate(d, l = lang)`, `formatDateTime(iso, l = lang)`, `formatPhone(p, l = lang)`, `timeAgo(iso, l = lang)`, `collate(a: string, b: string): number`। `toBanglaDigits`/`toAsciiDigits` থাকে (ইনপুট পার্সিং)। `MONTHS` export মুছে যায় (কনজিউমার নেই)।
 
-- [ ] **Step 1: failing test**
+- [x] **Step 1: failing test**
 
 ```ts
 // src/test/format.test.ts
@@ -299,9 +301,9 @@ test("timeAgo: en", () => {
 })
 ```
 
-- [ ] **Step 2: run, expect FAIL** — `digits` is not exported।
+- [x] **Step 2: run, expect FAIL** — `digits` is not exported।
 
-- [ ] **Step 3: format.ts**
+- [x] **Step 3: format.ts**
 
 ```ts
 // src/lib/format.ts
@@ -374,7 +376,7 @@ export const today = () => new Date().toISOString().slice(0, 10)
 export const initials = (name: string | null | undefined) => (name ?? "?").trim().slice(0, 1).toUpperCase()
 ```
 
-- [ ] **Step 4: কল-সাইট মাইগ্রেশন**
+- [x] **Step 4: কল-সাইট মাইগ্রেশন**
 
 ```bash
 # toBanglaDigits → digits (format.ts বাদে)
@@ -391,8 +393,8 @@ grep -rn 'localeCompare' src   # expected: শুধু select.tsx/select-search
 `src/features/google/real/picker.ts`: লাইন ১-এর পরে `import { lang } from "@/lib/i18n"`, লাইন ১৮ `.setLocale("bn")` → `.setLocale(lang)`।
 `src/components/common/sync-status.tsx:12`: `t.sync.offline(s.pending ? String(s.pending) : "")` → `t.sync.offline(s.pending ? digits(s.pending) : "")` (+ import)। একই ফাইলে অন্য `String(` থাকলে একইভাবে।
 
-- [ ] **Step 5: run, expect PASS** — `pnpm test && pnpm typecheck && pnpm lint`
-- [ ] **Step 6: commit** — `feat(i18n): locale-aware digits, months, dates, collation`
+- [x] **Step 5: run, expect PASS** — `pnpm test && pnpm typecheck && pnpm lint`
+- [x] **Step 6: commit** — `feat(i18n): locale-aware digits, months, dates, collation`
 
 ---
 
@@ -401,7 +403,7 @@ grep -rn 'localeCompare' src   # expected: শুধু select.tsx/select-search
 **Files:**
 - Modify: `src/config/event-types.ts`, `src/config/site.ts:25,28`, `src/routes/__root.tsx:93`, `src/routes/_app/settings.tsx:118`, `src/routes/privacy.tsx` (english ব্লক), `src/routes/__root.tsx` (`document.documentElement.lang`)
 
-- [ ] **Step 1: event-types.ts**
+- [x] **Step 1: event-types.ts**
 
 ```ts
 import type { IconName } from "./icons.ts"
@@ -421,15 +423,15 @@ export const EVENT_TYPES = {
 
 (বাকি export অপরিবর্তিত। `as const` থাকলেও label টাইপ `string`-ই হয় কারণ `t.eventTypes.*` string।)
 
-- [ ] **Step 2: site.ts** — `inLanguage: "bn"` → `inLanguage: lang`, `featureList: [...]` → `featureList: t.seo.features`; উপরে `import { lang, t } from "@/lib/i18n"` (আগের `t` import বদলে)।
+- [x] **Step 2: site.ts** — `inLanguage: "bn"` → `inLanguage: lang`, `featureList: [...]` → `featureList: t.seo.features`; উপরে `import { lang, t } from "@/lib/i18n"` (আগের `t` import বদলে)।
 
-- [ ] **Step 3: __root.tsx** — `import { lang, t } from "@/lib/i18n"`; `<html lang="bn"` → `<html lang={lang}`; `App`-এর useEffect-এ এক লাইন: `document.documentElement.lang = lang` (prerendered shell bn, ক্লায়েন্টে ঠিক হয়)।
+- [x] **Step 3: __root.tsx** — `import { lang, t } from "@/lib/i18n"`; `<html lang="bn"` → `<html lang={lang}`; `App`-এর useEffect-এ এক লাইন: `document.documentElement.lang = lang` (prerendered shell bn, ক্লায়েন্টে ঠিক হয়)।
 
-- [ ] **Step 4: settings.tsx:118** — `"ডেমো মোড"` → `t.settings.demoMode`।
+- [x] **Step 4: settings.tsx:118** — `"ডেমো মোড"` → `t.settings.demoMode`।
 
-- [ ] **Step 5: privacy.tsx:32** — `<p>{p.english}</p>` (ও তার উপরের "English" heading, থাকলে) `{p.english && (<>…</>)}` দিয়ে মোড়াও (en মোডে `english: ""` → ব্লক নেই)।
+- [x] **Step 5: privacy.tsx:32** — `<p>{p.english}</p>` (ও তার উপরের "English" heading, থাকলে) `{p.english && (<>…</>)}` দিয়ে মোড়াও (en মোডে `english: ""` → ব্লক নেই)।
 
-- [ ] **Step 6: যাচাই**
+- [x] **Step 6: যাচাই**
 
 ```bash
 grep -rnP '[\x{0980}-\x{09FF}]' src --include=*.tsx --include=*.ts | grep -v "src/lib/i18n/bn.ts" | grep -v "src/test/" | grep -v "seed.ts\|mock/store.ts" | grep -vP '^\S+:\d+:\s*//|//\s' 
@@ -437,7 +439,7 @@ grep -rnP '[\x{0980}-\x{09FF}]' src --include=*.tsx --include=*.ts | grep -v "sr
 pnpm typecheck && pnpm lint && pnpm test
 ```
 
-- [ ] **Step 7: commit** — `refactor(i18n): move remaining hardcoded Bangla to dictionary`
+- [x] **Step 7: commit** — `refactor(i18n): move remaining hardcoded Bangla to dictionary`
 
 ---
 
@@ -450,7 +452,7 @@ pnpm typecheck && pnpm lint && pnpm test
 **Interfaces:**
 - Produces: `LangSwitch({ className?, variant? = "ghost" })` — ক্লিক করলে `setLang(t.lang.otherCode)`; লেবেল `t.lang.other`; `aria-label={t.lang.label}`; `lang={t.lang.otherCode}` attribute (স্ক্রিন রিডার/ফন্ট)।
 
-- [ ] **Step 1: কম্পোনেন্ট**
+- [x] **Step 1: কম্পোনেন্ট**
 
 ```tsx
 // src/components/common/lang-switch.tsx
@@ -469,10 +471,10 @@ export function LangSwitch({ className, variant = "ghost" }: { className?: strin
 
 (`src/components/ui/button.tsx`-এ variants: default/outline/secondary/ghost/destructive — `link` নেই।)
 
-- [ ] **Step 2: ল্যান্ডিং হেডার** — `src/routes/index.tsx`-এ `<nav …>`-এর পরে, লগইন `Button`-এর আগে: `<LangSwitch className="ml-auto sm:ml-0" />`; লগইন বাটনের `className="ml-auto sm:ml-0"` → `""` (এখন LangSwitch-ই `ml-auto` নেয়)।
-- [ ] **Step 3: লগইন ফুটার** — `login.tsx`-এর `<p className="flex gap-3 text-xs …">` সারির শেষে `<LangSwitch className="h-auto p-0 text-xs" />`।
-- [ ] **Step 4: পাবলিক ফুটার** — `public-layout.tsx` footer-এর শেষে একই `<LangSwitch className="h-auto p-0 text-xs" />`।
-- [ ] **Step 5: সেটিংস কার্ড** — অ্যাকাউন্ট `<Card>`-এর পরে:
+- [x] **Step 2: ল্যান্ডিং হেডার** — `src/routes/index.tsx`-এ `<nav …>`-এর পরে, লগইন `Button`-এর আগে: `<LangSwitch className="ml-auto sm:ml-0" />`; লগইন বাটনের `className="ml-auto sm:ml-0"` → `""` (এখন LangSwitch-ই `ml-auto` নেয়)।
+- [x] **Step 3: লগইন ফুটার** — `login.tsx`-এর `<p className="flex gap-3 text-xs …">` সারির শেষে `<LangSwitch className="h-auto p-0 text-xs" />`।
+- [x] **Step 4: পাবলিক ফুটার** — `public-layout.tsx` footer-এর শেষে একই `<LangSwitch className="h-auto p-0 text-xs" />`।
+- [x] **Step 5: সেটিংস কার্ড** — অ্যাকাউন্ট `<Card>`-এর পরে:
 
 ```tsx
 <Card>
@@ -486,8 +488,8 @@ export function LangSwitch({ className, variant = "ghost" }: { className?: strin
 
 (`import { lang, t } from "@/lib/i18n"`, `import { LangSwitch } from "@/components/common/lang-switch"`।)
 
-- [ ] **Step 6: যাচাই** — `pnpm typecheck && pnpm lint && pnpm build`; `pnpm dev:mock` → লগইন পাতায় "English" চাপলে reload, সব ইংরেজি; সেটিংসে "বাংলা" চাপলে ফেরে; reload-এর পরেও ভাষা থাকে; নতুন ইনকগনিটো (en-US ব্রাউজার) → ইংরেজি।
-- [ ] **Step 7: commit** — `feat(i18n): language switch on landing, login, public footer, settings`
+- [x] **Step 6: যাচাই** — `pnpm typecheck && pnpm lint && pnpm build`; `pnpm dev:mock` → লগইন পাতায় "English" চাপলে reload, সব ইংরেজি; সেটিংসে "বাংলা" চাপলে ফেরে; reload-এর পরেও ভাষা থাকে; নতুন ইনকগনিটো (en-US ব্রাউজার) → ইংরেজি।
+- [x] **Step 7: commit** — `feat(i18n): language switch on landing, login, public footer, settings`
 
 ---
 
@@ -496,13 +498,13 @@ export function LangSwitch({ className, variant = "ghost" }: { className?: strin
 **Files:**
 - Modify: `README.md` (স্ট্যাক লাইন + i18n অনুচ্ছেদ), `docs/GAP-ANALYSIS.md` (i18n এন্ট্রি)
 
-- [ ] **Step 1: হেডলেস যাচাই** — `vite build --mode mock`, `dist/client` SPA সার্ভারে (`/tmp/spa-serve.mjs` প্যাটার্ন: আসল ফাইল, নইলে `_shell.html`), playwright-core + system Chrome:
+- [x] **Step 1: হেডলেস যাচাই** — `vite build --mode mock`, `dist/client` SPA সার্ভারে (`/tmp/spa-serve.mjs` প্যাটার্ন: আসল ফাইল, নইলে `_shell.html`), playwright-core + system Chrome:
   - `localStorage.uk-lang` খালি, `locale: "en-US"` context → `/` → body-তে বাংলা অক্ষর নেই, `document.documentElement.lang === "en"`; মক লগইন → `/events` → `New event` বাটন, `Received`/`Given`; তারিখ `10 October 2026`; টাকা `৳5,000`।
   - `locale: "bn-BD"` → সব বাংলা, `lang === "bn"`।
   - en-এ সেটিংস → "বাংলা" ক্লিক → reload → বাংলা; `localStorage.uk-lang === "bn"`।
   - অফলাইন (`setOffline(true)`) reload `/events` → ভাষা অপরিবর্তিত (SW থেকে shell, localStorage থেকে ভাষা)।
-- [ ] **Step 2: README** — স্ট্যাক লাইনে `i18n (bn/en, src/lib/i18n)`; "ভাষা" অনুচ্ছেদ: কোথায় ডিকশনারি, নতুন টেক্সট দুই ফাইলে যোগ করতে হয়, টেস্ট কী পাহারা দেয়, ভাষা কীভাবে ঠিক হয়।
-- [ ] **Step 3: commit** — `docs: i18n notes`
+- [x] **Step 2: README** — স্ট্যাক লাইনে `i18n (bn/en, src/lib/i18n)`; "ভাষা" অনুচ্ছেদ: কোথায় ডিকশনারি, নতুন টেক্সট দুই ফাইলে যোগ করতে হয়, টেস্ট কী পাহারা দেয়, ভাষা কীভাবে ঠিক হয়।
+- [x] **Step 3: commit** — `docs: i18n notes`
 
 ---
 
